@@ -21,6 +21,7 @@
       "hero.store.get": "Hol dir",
       "hero.store.on": "Lade aus dem",
       "hero.soon": "Bald",
+      "hero.qr": "Scannen für Android",
 
       "about.kicker": "Die Idee",
       "about.title": "Ein Fall. Jeden Tag.",
@@ -77,6 +78,7 @@
       "hero.store.get": "Get it on",
       "hero.store.on": "Download on the",
       "hero.soon": "Soon",
+      "hero.qr": "Scan for Android",
 
       "about.kicker": "The idea",
       "about.title": "One case. Every day.",

@@ -201,11 +201,20 @@ img, svg { max-width: 100%; }
   font-family: var(--mono);
   font-size: 13px;
   letter-spacing: 0.5px;
-  cursor: not-allowed;
-  opacity: 0.72;
+  cursor: pointer;
   position: relative;
+  transition: border-color 0.15s ease, transform 0.15s ease;
 }
 .store-btn:hover { text-decoration: none; }
+.store-btn:not([aria-disabled="true"]):hover {
+  border-color: var(--amber);
+  transform: translateY(-2px);
+}
+/* Platzhalter-Buttons (z. B. iOS, URL noch nicht bekannt) */
+.store-btn[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.72;
+}
 .store-btn .store-icon { font-size: 22px; }
 .store-btn .store-line small {
   display: block;
@@ -223,6 +232,37 @@ img, svg { max-width: 100%; }
   border: 1px solid var(--amber-d);
   border-radius: 6px;
   padding: 2px 6px;
+}
+
+/* QR-Code zum Play Store */
+.qr {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.qr:hover {
+  text-decoration: none;
+  border-color: var(--amber);
+  transform: translateY(-2px);
+}
+.qr img {
+  display: block;
+  border-radius: 8px;
+  background: var(--paper);
+}
+.qr-caption {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 /* ===================== Sections ===================== */
