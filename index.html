@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Delikta — Ein neuer Kriminalfall. Jeden Tag.</title>
+  <meta name="description" content="Delikta ist ein täglicher, prozedural generierter Kriminalfall fürs Smartphone. Sichte Verdächtige, prüfe Motiv, Mittel und Gelegenheit und überführe den Täter.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icon-512.png">
+  <meta property="og:title" content="Delikta — Ein neuer Kriminalfall. Jeden Tag.">
+  <meta property="og:description" content="Täglicher, prozedural generierter Kriminalfall. Ermittle mit Logik.">
+  <meta property="og:image" content="assets/icon-512.png">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt="">
+        <span>DELIKTA</span>
+      </a>
+      <div class="nav-links">
+        <a class="nav-text" href="index.html" data-i18n="nav.home">Spiel</a>
+        <a class="nav-text" href="privacy.html" data-i18n="nav.privacy">Datenschutz</a>
+        <a class="nav-text" href="delete-account.html" data-i18n="nav.delete">Account löschen</a>
+        <div class="lang-switch" role="group" aria-label="Sprache / Language">
+          <button type="button" data-set-lang="de" aria-pressed="true">DE</button>
+          <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <img class="hero-logo" src="assets/logo.svg" alt="Delikta">
+        <h1>DELIKTA</h1>
+        <p class="kicker" data-i18n="hero.kicker">Prozeduraler Kriminalfall · täglich</p>
+        <p class="subline" data-i18n="hero.subline">Ein neuer Fall. Jeden Tag.</p>
+        <p class="lede" data-i18n="hero.lede">Delikta ist ein täglicher Kriminalfall, der für dich generiert wird. Sichte Verdächtige, lies die Hinweise und überführe den Täter – allein mit Logik.</p>
+
+        <div class="downloads">
+          <!-- Platzhalter: Links noch nicht final. Bei Release href + Klickbarkeit aktivieren. -->
+          <a class="store-btn" href="#" aria-disabled="true" role="link">
+            <span class="store-icon">▶</span>
+            <span class="store-line">
+              <small data-i18n="hero.store.get">Hol dir</small>
+              <strong data-i18n="hero.android">Android</strong>
+            </span>
+            <span class="badge-soon" data-i18n="hero.soon">Bald</span>
+          </a>
+          <a class="store-btn" href="#" aria-disabled="true" role="link">
+            <span class="store-icon"></span>
+            <span class="store-line">
+              <small data-i18n="hero.store.on">Lade aus dem</small>
+              <strong data-i18n="hero.ios">iOS</strong>
+            </span>
+            <span class="badge-soon" data-i18n="hero.soon">Bald</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="block">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker" data-i18n="about.kicker">Die Idee</p>
+          <h2 data-i18n="about.title">Ein Fall. Jeden Tag.</h2>
+          <p data-i18n="about.text">Jeden Tag wartet genau ein frisch generierter Fall auf dich – für alle gleich. Du prüfst, wer Motiv, Mittel und Gelegenheit hatte, hältst deine Schlüsse im Ermittlungsraster fest und erhebst Anklage. Liegst du richtig, wächst deine Serie. Wer nicht warten will, übt mit Zufallsfällen.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE TYPES -->
+    <section class="block">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker" data-i18n="cases.kicker">Drei Falltypen</p>
+          <h2 data-i18n="cases.title">Jeder Fall ist anders gelagert</h2>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <p class="case-no" data-i18n="case.whodunit.no">FALL-TYP A</p>
+            <h3 data-i18n="case.whodunit.title">Täter</h3>
+            <p data-i18n="case.whodunit.text">Genau eine Person vereint Motiv, Mittel und Gelegenheit. Wer ist der Täter?</p>
+          </article>
+          <article class="card">
+            <p class="case-no" data-i18n="case.komplizen.no">FALL-TYP B</p>
+            <h3 data-i18n="case.komplizen.title">Komplizen</h3>
+            <p data-i18n="case.komplizen.text">Die Tat erforderte zwei Komplizen – beide hatten Motiv, Mittel und Gelegenheit. Benenne beide.</p>
+          </article>
+          <article class="card">
+            <p class="case-no" data-i18n="case.luege.no">FALL-TYP C</p>
+            <h3 data-i18n="case.luege.title">Falsche Aussage</h3>
+            <p data-i18n="case.luege.text">Die Aussagen widersprechen sich: Genau eine Zeugenaussage ist gelogen. Finde die Lüge.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="block">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker" data-i18n="how.kicker">So funktioniert's</p>
+          <h2 data-i18n="how.title">Ermitteln statt raten</h2>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="num">1</div>
+            <h4 data-i18n="how.s1.title">Akte sichten</h4>
+            <p data-i18n="how.s1.text">Opfer, Tatwaffe, Ort und Zeit – dazu die Verdächtigen und ihre Hinweise.</p>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <h4 data-i18n="how.s2.title">Raster führen</h4>
+            <p data-i18n="how.s2.text">Hake im Ermittlungsraster ab, wer Motiv, Mittel und Gelegenheit hatte.</p>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <h4 data-i18n="how.s3.title">Anklage erheben</h4>
+            <p data-i18n="how.s3.text">Triff deine Entscheidung. Die Auflösung zeigt die lückenlose Beweiskette.</p>
+          </div>
+        </div>
+        <div class="attr-row">
+          <span class="attr-chip" data-i18n="how.attr.motive">Motiv</span>
+          <span class="attr-chip" data-i18n="how.attr.means">Mittel</span>
+          <span class="attr-chip" data-i18n="how.attr.opportunity">Gelegenheit</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREENSHOTS -->
+    <section class="block">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker" data-i18n="shots.kicker">Einblick</p>
+          <h2 data-i18n="shots.title">Ermittlerischer Noir-Look</h2>
+        </div>
+        <div class="shots">
+          <img src="assets/screenshots/case-menu.svg" alt="Delikta — Menü" loading="lazy">
+          <img src="assets/screenshots/case-whodunit.svg" alt="Delikta — Fall mit Verdächtigen" loading="lazy">
+          <img src="assets/screenshots/case-verdict.svg" alt="Delikta — Auflösung" loading="lazy">
+        </div>
+        <p class="shots-note" data-i18n="shots.note">Vorschau-Darstellungen – echte Screenshots folgen.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo.svg" alt="">
+        <div>
+          <strong>DELIKTA</strong><br>
+          <span class="muted" data-i18n="footer.tagline">Ein neuer Fall. Jeden Tag.</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="privacy.html" data-i18n="footer.privacy">Datenschutz</a>
+        <a href="delete-account.html" data-i18n="footer.delete">Account löschen</a>
+        <a href="mailto:swordiapps@gmail.com" data-i18n="footer.contact">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+</body>
+</html>
