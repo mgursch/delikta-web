@@ -13,7 +13,7 @@
       "nav.privacy": "Datenschutz",
       "nav.delete": "Account löschen",
 
-      "hero.kicker": "Prozeduraler Kriminalfall · täglich",
+      "hero.kicker": "Ein neuer Kriminalfall · täglich",
       "hero.subline": "Ein neuer Fall. Jeden Tag.",
       "hero.lede": "Delikta ist ein täglicher Kriminalfall, der für dich generiert wird. Sichte Verdächtige, lies die Hinweise und überführe den Täter – allein mit Logik.",
       "hero.android": "Android",
@@ -69,7 +69,7 @@
       "nav.privacy": "Privacy",
       "nav.delete": "Delete account",
 
-      "hero.kicker": "Procedural crime case · daily",
+      "hero.kicker": "A new crime case · daily",
       "hero.subline": "A new case. Every day.",
       "hero.lede": "Delikta is a daily crime case generated just for you. Review the suspects, read the clues and convict the culprit – using logic alone.",
       "hero.android": "Android",
