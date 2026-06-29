@@ -25,7 +25,7 @@
 
       "about.kicker": "Die Idee",
       "about.title": "Ein Fall. Jeden Tag.",
-      "about.text": "Jeden Tag wartet genau ein frisch generierter Fall auf dich – für alle gleich. Du prüfst, wer Motiv, Mittel und Gelegenheit hatte, hältst deine Schlüsse im Ermittlungsraster fest und erhebst Anklage. Liegst du richtig, wächst deine Serie. Wer nicht warten will, übt mit Zufallsfällen.",
+      "about.text": "Jeden Tag wartet genau ein Fall auf dich – für alle gleich. Er entfaltet sich Kapitel für Kapitel: Du liest die Geschichte, lernst die Verdächtigen kennen und sammelst die Hinweise. Dann prüfst du, wer Motiv, Mittel und Gelegenheit hatte, und erhebst Anklage. Liegst du richtig, wächst deine Serie.",
 
       "cases.kicker": "Drei Falltypen",
       "cases.title": "Jeder Fall ist anders gelagert",
@@ -41,8 +41,8 @@
 
       "how.kicker": "So funktioniert's",
       "how.title": "Ermitteln statt raten",
-      "how.s1.title": "Akte sichten",
-      "how.s1.text": "Opfer, Tatwaffe, Ort und Zeit – dazu die Verdächtigen und ihre Hinweise.",
+      "how.s1.title": "Geschichte lesen",
+      "how.s1.text": "Der Fall entfaltet sich Kapitel für Kapitel – Verdächtige und Hinweise tauchen nach und nach auf.",
       "how.s2.title": "Raster führen",
       "how.s2.text": "Hake im Ermittlungsraster ab, wer Motiv, Mittel und Gelegenheit hatte.",
       "how.s3.title": "Anklage erheben",
@@ -50,6 +50,13 @@
       "how.attr.motive": "Motiv",
       "how.attr.means": "Mittel",
       "how.attr.opportunity": "Gelegenheit",
+
+      "feat.kicker": "Im Spiel",
+      "feat.title": "Mehr als ein Rätsel",
+      "feat.story.title": "Fall als Geschichte",
+      "feat.story.text": "Jeder Fall entfaltet sich Kapitel für Kapitel. Du folgst der Erzählung, lernst die Verdächtigen mit Porträt und Aussage kennen und deckst die Hinweise Schritt für Schritt auf.",
+      "feat.streak.title": "Halte deine Serie",
+      "feat.streak.text": "Löse den Fall des Tages und halte deine Serie am Leben. Melde dich optional mit Google oder Apple an – so wandert dein Fortschritt geräteübergreifend mit.",
 
       "shots.kicker": "Einblick",
       "shots.title": "Ermittlerischer Noir-Look",
@@ -82,7 +89,7 @@
 
       "about.kicker": "The idea",
       "about.title": "One case. Every day.",
-      "about.text": "Every day a single freshly generated case awaits you – the same for everyone. You weigh who had motive, means and opportunity, track your conclusions on the investigation grid and make your accusation. Get it right and your streak grows. Can't wait? Practise with random cases.",
+      "about.text": "Every day a single case awaits you – the same for everyone. It unfolds chapter by chapter: you read the story, get to know the suspects and gather the clues. Then you weigh who had motive, means and opportunity, and make your accusation. Get it right and your streak grows.",
 
       "cases.kicker": "Three case types",
       "cases.title": "Every case is set up differently",
@@ -98,8 +105,8 @@
 
       "how.kicker": "How it works",
       "how.title": "Investigate, don't guess",
-      "how.s1.title": "Study the file",
-      "how.s1.text": "Victim, weapon, place and time – plus the suspects and their clues.",
+      "how.s1.title": "Read the story",
+      "how.s1.text": "The case unfolds chapter by chapter – suspects and clues appear one by one.",
       "how.s2.title": "Keep the grid",
       "how.s2.text": "Tick off on the investigation grid who had motive, means and opportunity.",
       "how.s3.title": "Make the accusation",
@@ -107,6 +114,13 @@
       "how.attr.motive": "Motive",
       "how.attr.means": "Means",
       "how.attr.opportunity": "Opportunity",
+
+      "feat.kicker": "In the game",
+      "feat.title": "More than a puzzle",
+      "feat.story.title": "A case as a story",
+      "feat.story.text": "Every case unfolds chapter by chapter. You follow the narrative, get to know the suspects with portrait and statement, and uncover the clues step by step.",
+      "feat.streak.title": "Keep your streak",
+      "feat.streak.text": "Solve the case of the day and keep your streak alive. Sign in with Google or Apple if you like – your progress then follows you across devices.",
 
       "shots.kicker": "A look inside",
       "shots.title": "Investigative noir look",
