@@ -281,6 +281,12 @@ section.block { padding: 64px 0; border-top: 1px solid var(--line); }
   grid-template-columns: repeat(3, 1fr);
   gap: 22px;
 }
+/* Zwei-Karten-Variante: zentriert, nimmt nicht die volle Breite ein */
+.cards--two {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 760px;
+  margin-inline: auto;
+}
 .card {
   background: var(--panel);
   border: 1px solid var(--line);
@@ -476,7 +482,7 @@ section.block { padding: 64px 0; border-top: 1px solid var(--line); }
 
 /* ===================== Responsive ===================== */
 @media (max-width: 820px) {
-  .cards, .steps { grid-template-columns: 1fr; }
+  .cards, .cards--two, .steps { grid-template-columns: 1fr; }
   .nav-links { gap: 14px; }
   .nav-links a.nav-text { display: none; }
 }
