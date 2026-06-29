@@ -12,7 +12,7 @@ Drei Seiten, im Noir-Look der App, zweisprachig (Deutsch / Englisch), ohne Build
 | `delete-account.html` | Anleitung zur Account-Löschung (DE + EN) — wird in den Stores hinterlegt |
 | `css/style.css` | Noir-Theme, Farbtokens 1:1 aus `core/ui/.../Theme.kt`, responsive |
 | `js/i18n.js` | Clientseitiger Sprachumschalter (DE/EN), Auswahl in `localStorage` |
-| `assets/` | App-Icon (PNG, mehrere Größen), QR-Code, Platzhalter-Screenshots |
+| `assets/` | App-Icon (PNG, mehrere Größen), QR-Code, App-Screenshots |
 
 ## Lokal ansehen
 
@@ -71,7 +71,7 @@ Der Workflow `.github/workflows/deploy.yml` deployt bei jedem Push auf `main` au
 ## TODO vor Release
 
 - [ ] **Download-Links eintragen:** in `index.html` die beiden `.store-btn`-Links (Android/iOS) mit echten Store-URLs versehen, `aria-disabled` entfernen, `cursor`/`opacity` ggf. anpassen und das „Bald"-Badge entfernen.
-- [ ] **Echte Screenshots** in `assets/screenshots/` ablegen und die SVG-Platzhalter in `index.html` ersetzen.
+- [x] **Echte Screenshots** in `assets/screenshots/` (aus `tagesakte-app/branding/screenshots/`).
 - [ ] **Datenschutz rechtlich prüfen** (`privacy.html`): Entwurf-Hinweis entfernen, Platzhalter `[…]` ausfüllen (Stand-Datum, Supabase-Region/Garantien, Consent-Mechanismus), ggf. Name/Anschrift des Verantwortlichen ergänzen.
 - [ ] **AdMob/Login-Status** abgleichen: Falls sich der tatsächliche Funktionsumfang (Werbung, Login-Anbieter) ändert, Datenschutztext anpassen.
 - [ ] Falls Custom-Domain gewünscht: `CNAME` anlegen (siehe oben).

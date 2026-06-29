@@ -352,16 +352,10 @@ section.block { padding: 64px 0; border-top: 1px solid var(--line); }
   flex-wrap: wrap;
 }
 .shots img {
-  width: 240px;
-  border-radius: 30px;
+  width: 230px;
+  border-radius: 26px;
+  border: 1px solid var(--line);
   box-shadow: var(--shadow);
-}
-.shots-note {
-  text-align: center;
-  margin-top: 24px;
-  color: var(--faint);
-  font-size: 14px;
-  font-style: italic;
 }
 
 /* ===================== Legal / Content pages ===================== */

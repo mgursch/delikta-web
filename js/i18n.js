@@ -60,7 +60,6 @@
 
       "shots.kicker": "Einblick",
       "shots.title": "Ermittlerischer Noir-Look",
-      "shots.note": "Vorschau-Darstellungen – echte Screenshots folgen.",
 
       "footer.tagline": "Ein neuer Fall. Jeden Tag.",
       "footer.contact": "Kontakt",
@@ -124,7 +123,6 @@
 
       "shots.kicker": "A look inside",
       "shots.title": "Investigative noir look",
-      "shots.note": "Preview renders – real screenshots to follow.",
 
       "footer.tagline": "A new case. Every day.",
       "footer.contact": "Contact",
