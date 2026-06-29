@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080" role="img" aria-label="Delikta Logo">
-<circle cx="540" cy="540" r="290" fill="none" stroke="#3A4656" stroke-width="24"/>
-<g stroke="#D65A4C" stroke-width="26" stroke-linecap="round">
-<line x1="540" y1="220" x2="540" y2="295"/><line x1="540" y1="785" x2="540" y2="860"/>
-<line x1="220" y1="540" x2="295" y2="540"/><line x1="785" y1="540" x2="860" y2="540"/></g>
-<path fill="#E0AA48" d="M405 380 L560 380 C660 380 720 446 720 540 C720 634 660 700 560 700 L405 700 Z M470 442 L470 638 L550 638 C610 638 650 600 650 540 C650 480 610 442 550 442 Z"/>
-</svg>

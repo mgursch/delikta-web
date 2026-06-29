@@ -15,7 +15,7 @@
 
       "hero.kicker": "Ein neuer Kriminalfall · täglich",
       "hero.subline": "Ein neuer Fall. Jeden Tag.",
-      "hero.lede": "Delikta ist ein täglicher Kriminalfall, der für dich generiert wird. Sichte Verdächtige, lies die Hinweise und überführe den Täter – allein mit Logik.",
+      "hero.lede": "Delikta ist ein täglicher Kriminalfall, der sich Kapitel für Kapitel vor dir entfaltet. Sichte Verdächtige, lies die Hinweise und überführe den Täter – allein mit Logik.",
       "hero.android": "Android",
       "hero.ios": "iOS",
       "hero.store.get": "Hol dir",
@@ -79,7 +79,7 @@
 
       "hero.kicker": "A new crime case · daily",
       "hero.subline": "A new case. Every day.",
-      "hero.lede": "Delikta is a daily crime case generated just for you. Review the suspects, read the clues and convict the culprit – using logic alone.",
+      "hero.lede": "Delikta is a daily crime case that unfolds before you chapter by chapter. Review the suspects, read the clues and convict the culprit – using logic alone.",
       "hero.android": "Android",
       "hero.ios": "iOS",
       "hero.store.get": "Get it on",

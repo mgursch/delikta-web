@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-label="Delikta"><defs><clipPath id="c"><rect width="1024" height="1024" rx="180"/></clipPath></defs><g clip-path="url(#c)"><rect width="1024" height="1024" fill="#10141A"/><rect width="1024" height="512" fill="#141a23"/><circle cx="512" cy="512" r="320" fill="none" stroke="#3A4656" stroke-width="26"/>
-<g stroke="#D65A4C" stroke-width="28" stroke-linecap="round">
-<line x1="512" y1="150" x2="512" y2="232"/><line x1="512" y1="792" x2="512" y2="874"/>
-<line x1="150" y1="512" x2="232" y2="512"/><line x1="792" y1="512" x2="874" y2="512"/></g>
-<path fill="#E0AA48" d="M390 360 L560 360 C672 360 740 432 740 512 C740 592 672 664 560 664 L390 664 Z M462 428 L462 596 L552 596 C620 596 668 552 668 512 C668 472 620 428 552 428 Z"/></g></svg>

@@ -12,7 +12,7 @@ Drei Seiten, im Noir-Look der App, zweisprachig (Deutsch / Englisch), ohne Build
 | `delete-account.html` | Anleitung zur Account-Löschung (DE + EN) — wird in den Stores hinterlegt |
 | `css/style.css` | Noir-Theme, Farbtokens 1:1 aus `core/ui/.../Theme.kt`, responsive |
 | `js/i18n.js` | Clientseitiger Sprachumschalter (DE/EN), Auswahl in `localStorage` |
-| `assets/` | Logo, Favicon, App-Icon, Platzhalter-Screenshots |
+| `assets/` | App-Icon (PNG, mehrere Größen), QR-Code, Platzhalter-Screenshots |
 
 ## Lokal ansehen
 
@@ -32,7 +32,9 @@ Farben und Typografie sind aus der App übernommen
 (`tagesakte-app/core/ui/src/commonMain/kotlin/io/delikta/game/core/ui/Theme.kt`,
 Noir-/Dark-Academia-Theme): dunkler Hintergrund, Amber-Akzent (`#E0AA48`),
 Serifen-Schrift für Texte, Monospace für Labels, „Papier-Akte"-Optik für die Lösch-Anleitung.
-Das Logo (`assets/logo.svg`) stammt aus `tagesakte-app/branding/icon/master_fg.svg`.
+Das App-Icon (Fingerabdruck + Lupe) wird als PNG in mehreren Größen verwendet
+(`assets/icon-512.png`, `icon-180.png`, `icon-96.png`), abgeleitet aus
+`tagesakte-app/branding/icon/play_store_512.png`.
 
 ## Sprachen
 
