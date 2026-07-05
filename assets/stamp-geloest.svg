@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="340" height="340" viewBox="0 0 340 340" role="img" aria-label="Gelöst-Stempel">
+  <defs>
+    <path id="arcTop" d="M 60 170 A 110 110 0 0 1 280 170" fill="none"/>
+    <path id="arcBottom" d="M 66 170 A 104 104 0 0 0 274 170" fill="none"/>
+    <path id="star" transform="scale(0.9)" d="M0 -9 L2.2 -2.8 L9 -2.8 L3.4 1.1 L5.6 7.6 L0 3.6 L-5.6 7.6 L-3.4 1.1 L-9 -2.8 L-2.2 -2.8 Z"/>
+  </defs>
+  <g fill="none" stroke="#5FB27E" stroke-linecap="round" opacity="0.92">
+    <!-- äußerer Ring, leicht unterbrochen wie ein echter Stempel -->
+    <circle cx="170" cy="170" r="128" stroke-width="5" stroke-dasharray="150 14 90 16 200 12"/>
+    <circle cx="170" cy="170" r="112" stroke-width="3" stroke-dasharray="8 10"/>
+  </g>
+  <!-- Umlaufender Text -->
+  <g fill="#5FB27E" font-family="ui-monospace, Menlo, monospace" font-weight="700" letter-spacing="4" opacity="0.9">
+    <text font-size="17">
+      <textPath href="#arcTop" startOffset="50%" text-anchor="middle">DELIKTA</textPath>
+    </text>
+    <text font-size="17">
+      <textPath href="#arcBottom" startOffset="50%" text-anchor="middle">DELIKTA</textPath>
+    </text>
+  </g>
+  <!-- Sterne oben/unten -->
+  <g fill="#5FB27E" opacity="0.92">
+    <g transform="translate(170,96)">
+      <use href="#star" x="-34"/><use href="#star"/><use href="#star" x="34"/>
+    </g>
+    <g transform="translate(170,244)">
+      <use href="#star" x="-34"/><use href="#star"/><use href="#star" x="34"/>
+    </g>
+  </g>
+  <!-- Hauptwort -->
+  <text x="170" y="188" text-anchor="middle" fill="#5FB27E" font-family="Georgia, 'Times New Roman', serif" font-weight="800" font-size="62" letter-spacing="2">GELÖST</text>
+</svg>
