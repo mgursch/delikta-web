@@ -3,210 +3,580 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Delikta — Ein neuer Kriminalfall. Jeden Tag.</title>
-  <meta name="description" content="Delikta ist ein täglich neuer Kriminalfall fürs Smartphone. Sichte Verdächtige, prüfe Motiv, Mittel und Gelegenheit und überführe den Täter.">
+  <title>Delikta — Der Fall entfaltet sich</title>
+  <meta name="description" content="Delikta: Ein neuer Kriminalfall. Jeden Tag. Erlebe, wie sich der Fall Kapitel für Kapitel entfaltet.">
   <link rel="icon" type="image/png" sizes="180x180" href="assets/icon-180.png">
   <link rel="apple-touch-icon" href="assets/icon-180.png">
-  <meta property="og:title" content="Delikta — Ein neuer Kriminalfall. Jeden Tag.">
-  <meta property="og:description" content="Täglich ein neuer Kriminalfall. Ermittle mit Logik.">
-  <meta property="og:image" content="assets/icon-512.png">
-  <meta property="og:type" content="website">
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root{
+      --bg:#10141A; --bg2:#151A22; --panel:#1A212B; --panel2:#202836;
+      --line:#2A3340; --line2:#374252;
+      --text:#DBE1E9; --muted:#8A94A1; --faint:#5D6776;
+      --amber:#E0AA48; --amber-d:#B9882F; --red:#D65A4C; --green:#5FB27E;
+      --paper:#ECE6D6; --paper-line:#CFC6AD; --ink:#2C2820; --frame:#3A4656;
+      --serif:Georgia,"Times New Roman","Iowan Old Style",serif;
+      --mono:ui-monospace,"SF Mono","Menlo","Consolas",monospace;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg); color:var(--text); font-family:var(--serif);
+      font-size:18px; line-height:1.65; -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    img{max-width:100%;display:block}
+    .mono{font-family:var(--mono)}
+    .kicker{
+      font-family:var(--mono); font-size:12px; letter-spacing:3px;
+      text-transform:uppercase; color:var(--amber);
+    }
+
+    /* ---------- Fortschritts-Leiste (Akte füllt sich) ---------- */
+    .progress{
+      position:fixed; top:0; left:0; height:3px; width:0%;
+      background:linear-gradient(90deg,var(--amber-d),var(--amber));
+      z-index:100; transition:width .1s linear;
+    }
+
+    /* ---------- Sticky Mini-Header ---------- */
+    .topbar{
+      position:fixed; top:0; left:0; right:0; z-index:90;
+      display:flex; align-items:center; gap:12px;
+      padding:14px 24px;
+      background:linear-gradient(180deg,rgba(16,20,26,.9),rgba(16,20,26,0));
+      opacity:0; transform:translateY(-8px); transition:opacity .4s,transform .4s;
+      pointer-events:none;
+    }
+    .topbar.show{opacity:1; transform:none; pointer-events:auto}
+    .topbar img{width:30px;height:30px}
+    .topbar .wordmark{font-weight:800;letter-spacing:2px;font-size:16px}
+    .topbar .wordmark b{color:var(--amber)}
+
+    /* ---------- Atmosphärischer Hintergrund (Parallax-Ebenen) ---------- */
+    .bg-layer{position:fixed; inset:0; z-index:-2; pointer-events:none}
+    .fog{
+      position:fixed; inset:-20% 0; z-index:-1; pointer-events:none;
+      background:
+        radial-gradient(60vw 40vh at 20% 15%, rgba(224,170,72,.10), transparent 60%),
+        radial-gradient(50vw 35vh at 85% 25%, rgba(214,90,76,.08), transparent 60%),
+        radial-gradient(70vw 50vh at 50% 90%, rgba(58,70,86,.18), transparent 65%);
+      will-change:transform;
+    }
+    /* schwebende Staub-/Regenpartikel */
+    .dust{position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.5}
+    .dust span{
+      position:absolute; width:2px; height:2px; border-radius:50%;
+      background:var(--amber); opacity:.35; will-change:transform;
+    }
+
+    /* ---------- Reveal-Basisanimation ---------- */
+    .reveal{opacity:0; transform:translateY(38px); transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1)}
+    .reveal.in{opacity:1; transform:none}
+    .reveal.d1{transition-delay:.12s}
+    .reveal.d2{transition-delay:.24s}
+    .reveal.d3{transition-delay:.36s}
+    .reveal.blur{filter:blur(8px)}
+    .reveal.blur.in{filter:blur(0)}
+
+    section{position:relative}
+    .wrap{max-width:1080px; margin:0 auto; padding:0 24px}
+
+    /* ---------- HERO ---------- */
+    .hero{min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:80px 24px}
+    .hero .icon{width:112px;height:112px; filter:drop-shadow(0 12px 34px rgba(0,0,0,.6)); will-change:transform}
+    .hero h1{
+      font-size:clamp(52px,13vw,120px); font-weight:800; letter-spacing:.06em;
+      margin:22px 0 6px; line-height:1;
+    }
+    .hero h1 b{color:var(--amber); font-weight:800}
+    .hero .sub{font-style:italic; font-size:clamp(18px,3.5vw,26px); color:var(--text)}
+    .hero .lede{max-width:560px; margin:22px auto 0; color:var(--muted); font-size:18px}
+    .scroll-cue{
+      position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+      font-family:var(--mono); font-size:10px; letter-spacing:3px; color:var(--faint);
+      display:flex; flex-direction:column; align-items:center; gap:10px;
+    }
+    .scroll-cue .arrow{width:14px;height:14px;border-right:2px solid var(--faint);border-bottom:2px solid var(--faint);transform:rotate(45deg);animation:bob 1.8s ease-in-out infinite}
+    @keyframes bob{0%,100%{transform:rotate(45deg) translate(0,0)}50%{transform:rotate(45deg) translate(4px,4px)}}
+
+    /* ---------- Story-Kapitel (Scrollytelling: sticky Phone + wechselnder Text) ---------- */
+    .chapter{padding:14vh 0}
+    .chapter-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center}
+    .chapter-grid.reverse{direction:rtl}
+    .chapter-grid.reverse > *{direction:ltr}
+    .stage{position:sticky; top:0; height:100vh; display:flex; align-items:center; justify-content:center}
+    .phone{
+      position:relative; width:min(300px,72vw);
+      border-radius:38px; border:1px solid var(--line2);
+      box-shadow:0 30px 80px rgba(0,0,0,.6); overflow:hidden; background:var(--panel);
+      will-change:transform;
+    }
+    .phone img{width:100%}
+    .chapter .text{max-width:460px}
+    .chapter .num{font-family:var(--mono); font-size:12px; letter-spacing:4px; color:var(--amber); display:block; margin-bottom:14px}
+    .chapter h2{font-size:clamp(30px,5vw,46px); font-weight:800; line-height:1.1; margin-bottom:18px}
+    .chapter p{color:var(--muted); font-size:19px}
+    .chapter .accent{color:var(--text)}
+
+    /* ---------- „Papier"-Zwischenblock (Zitat aus dem Fall) ---------- */
+    .quote{padding:16vh 0; text-align:center}
+    .quote .paper{
+      max-width:720px; margin:0 auto; background:var(--paper); color:var(--ink);
+      border-radius:8px; padding:56px 48px; box-shadow:var(--shadow,0 16px 40px rgba(0,0,0,.45));
+      background-image:repeating-linear-gradient(var(--paper) 0 34px, var(--paper-line) 34px 35px);
+      position:relative;
+    }
+    .quote .paper .stamp{
+      position:absolute; top:-18px; right:24px; transform:rotate(-8deg);
+      font-family:var(--mono); font-size:12px; letter-spacing:2px;
+      color:var(--red); border:2px solid var(--red); border-radius:8px; padding:6px 12px;
+      background:rgba(236,230,214,.9);
+    }
+    .quote blockquote{font-size:clamp(22px,3.5vw,30px); line-height:1.5; font-style:italic; text-align:left}
+    .quote .drop .dc{
+      float:left; font-style:normal; font-weight:800; color:var(--amber);
+      font-size:3em; line-height:.82; margin:2px 8px 0 0;
+    }
+    .quote cite{display:block; margin-top:20px; font-style:normal; font-family:var(--mono); font-size:12px; letter-spacing:2px; color:var(--ink-muted,#7A7363)}
+
+    /* ---------- Falltypen (horizontale Karten, gestaffeltes Reveal) ---------- */
+    .types{padding:12vh 0}
+    .center-head{text-align:center; max-width:640px; margin:0 auto 56px}
+    .center-head h2{font-size:clamp(30px,5vw,44px); font-weight:800; margin-top:10px}
+    .type-row{display:grid; grid-template-columns:repeat(3,1fr); gap:22px}
+    .tcard{
+      background:linear-gradient(180deg,var(--panel),var(--bg2));
+      border:1px solid var(--line); border-radius:16px; padding:30px 26px; position:relative; overflow:hidden;
+    }
+    .tcard::before{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:linear-gradient(90deg,var(--amber),transparent)}
+    .tcard .t{font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--faint)}
+    .tcard h3{font-size:24px;margin:8px 0 12px}
+    .tcard p{color:var(--muted);font-size:16px}
+
+    /* ---------- Feature-Split (Bild + Text, Parallax auf Bild) ---------- */
+    .feature{padding:14vh 0}
+    .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+    .feature-grid.reverse .fcopy{order:2}
+    .feature .shot{border-radius:30px;border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.5);width:min(280px,70vw);margin:0 auto;will-change:transform}
+    .feature h2{font-size:clamp(28px,4.5vw,42px);font-weight:800;line-height:1.12;margin-bottom:16px}
+    .feature p{color:var(--muted);font-size:19px}
+    .feature .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+    .feature .chip{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--line2);border-radius:999px;padding:8px 14px;color:var(--text);background:var(--bg2)}
+
+    /* ---------- Stat-Band (Zahlen zählen hoch) ---------- */
+    .stats{padding:12vh 0}
+    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;text-align:center}
+    .stat .big{font-size:clamp(44px,8vw,72px);font-weight:800;color:var(--amber);line-height:1}
+    .stat .lbl{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:8px}
+
+    /* ---------- Auflösung / CTA ---------- */
+    .solve{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14vh 24px}
+    .solve .stamp-img{
+      flex:none; width:180px;height:180px;margin-bottom:22px;
+      transform:rotate(-7deg);
+      filter:drop-shadow(0 6px 18px rgba(95,178,126,.18));
+    }
+    /* sanftes „Aufstempeln" beim Erscheinen */
+    .solve .stamp-img.reveal{opacity:0;transform:rotate(-7deg) scale(1.35)}
+    .solve .stamp-img.reveal.in{opacity:1;transform:rotate(-7deg) scale(1);transition:opacity .5s ease, transform .55s cubic-bezier(.2,1.3,.4,1)}
+    .solve h2{font-size:clamp(34px,7vw,66px);font-weight:800;line-height:1.05;margin-bottom:18px}
+    .solve p{color:var(--muted);max-width:520px;margin:0 auto 34px;font-size:19px}
+    /* ---- Download-Block: pro Plattform eine Einheit (Badge + Zusatz) ---- */
+    .getapp{
+      display:flex; align-items:flex-start; justify-content:center;
+      gap:48px; flex-wrap:wrap; margin-top:8px;
+    }
+    .plat{
+      display:flex; flex-direction:column; align-items:center; gap:18px;
+      padding:20px; border-radius:20px; border:1px solid var(--line);
+      background:linear-gradient(180deg,var(--panel),var(--bg2)); width:230px;
+    }
+    .plat-live{border-color:var(--amber-d); box-shadow:0 12px 30px rgba(224,170,72,.10)}
+    .plat .badge{display:block; text-decoration:none; transition:transform .18s}
+    .plat .badge:not(.badge-off):hover{transform:translateY(-2px)}
+    .plat .badge svg{display:block; width:100%; height:auto}
+    .plat .badge-off{opacity:.55; cursor:default}
+    /* QR-Kachel unter dem Android-Badge */
+    .qrtile{
+      display:flex; flex-direction:column; align-items:center; gap:12px;
+      text-decoration:none; width:100%;
+    }
+    .qrtile img{width:100%; border-radius:12px; background:var(--paper); padding:10px}
+    .qrtile span{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+    /* iOS-Hinweis */
+    .soon-note{
+      font-family:var(--mono); font-size:11px; letter-spacing:2px; text-transform:uppercase;
+      color:var(--amber); border:1px solid var(--amber-d); border-radius:999px; padding:8px 16px;
+    }
+    @media(max-width:560px){
+      .getapp{gap:28px}
+      .plat{width:min(280px,86vw)}
+    }
+
+    footer{border-top:1px solid var(--line);padding:40px 24px;text-align:center;color:var(--faint);font-size:14px}
+    footer a{color:var(--muted);text-decoration:none;margin:0 10px}
+    footer a:hover{color:var(--text)}
+
+    /* ---------- Responsive ---------- */
+    @media(max-width:860px){
+      .chapter-grid,.feature-grid{grid-template-columns:1fr;gap:30px}
+      .chapter-grid.reverse{direction:ltr}
+      .feature-grid.reverse .fcopy{order:0}
+      .stage{position:relative;height:auto;padding:20px 0}
+      .type-row{grid-template-columns:1fr}
+      .stat-row{grid-template-columns:1fr;gap:36px}
+      .chapter{padding:8vh 0}
+      /* Texte auf schmalen Screens zentrieren wirkt aufgeräumter */
+      .chapter .text,.feature .fcopy{max-width:none;text-align:center}
+      .chapter .chips{justify-content:center}
+    }
+
+    /* ---------- Smartphone (≤560px): Typo & Abstände zähmen ---------- */
+    @media(max-width:560px){
+      body{font-size:16px}
+      .wrap{padding:0 18px}
+      /* lange Wörter/Überschriften nie über den Rand */
+      h1,h2,h3,p,blockquote{overflow-wrap:anywhere}
+      .hero{padding:72px 16px 56px}
+      .hero h1{font-size:clamp(38px,11.5vw,52px); letter-spacing:0}
+      .hero .lede{font-size:16px}
+      .kicker{font-size:10px; letter-spacing:2px}
+      .chapter h2{font-size:clamp(26px,7.5vw,34px)}
+      .chapter p{font-size:16px}
+      .center-head h2,.feature h2{font-size:clamp(25px,7vw,34px)}
+      .feature p,.quote blockquote{font-size:clamp(18px,5.2vw,22px)}
+      .solve h2{font-size:clamp(28px,8.5vw,40px)}
+      .solve p{font-size:16px}
+      /* Papier-Akte: schmalere Innenabstände, Stempel nicht überstehen lassen */
+      .quote .paper{padding:34px 22px}
+      .quote .paper .stamp{right:12px; top:-14px; font-size:10px; padding:5px 9px}
+      .quote .drop .dc{font-size:2.6em; margin:2px 6px 0 0}
+      /* Karten & Stat kompakter */
+      .tcard{padding:24px 20px}
+      .stat .big{font-size:clamp(40px,13vw,56px)}
+      .chapter .num{letter-spacing:3px}
+    }
+    @media(max-width:380px){
+      .kicker{letter-spacing:1.5px}
+      .hero .kicker{font-size:9px}
+    }
+    /* Barrierefreiheit: Bewegung reduzieren */
+    @media(prefers-reduced-motion:reduce){
+      .reveal{opacity:1!important;transform:none!important;filter:none!important;transition:none}
+      .fog,.dust,.hero .icon,.phone,.feature .shot{transform:none!important}
+      .scroll-cue .arrow{animation:none}
+      html{scroll-behavior:auto}
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav" aria-label="Hauptnavigation">
-      <a class="brand" href="index.html">
-        <img src="assets/icon-96.png" alt="" width="34" height="34">
-        <span>DELIKTA</span>
-      </a>
-      <div class="nav-links">
-        <a class="nav-text" href="index.html" data-i18n="nav.home">Spiel</a>
-        <a class="nav-text" href="privacy.html" data-i18n="nav.privacy">Datenschutz</a>
-        <a class="nav-text" href="delete-account.html" data-i18n="nav.delete">Account löschen</a>
-        <div class="lang-switch" role="group" aria-label="Sprache / Language">
-          <button type="button" data-set-lang="de" aria-pressed="true">DE</button>
-          <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
-        </div>
-      </div>
-    </nav>
+  <div class="progress" id="progress"></div>
+
+  <!-- Parallax-Hintergrundebenen -->
+  <div class="fog" id="fog"></div>
+  <div class="dust" id="dust" aria-hidden="true"></div>
+
+  <!-- Sticky Mini-Header (erscheint nach dem Hero) -->
+  <div class="topbar" id="topbar">
+    <img src="assets/icon-96.png" alt="">
+    <span class="wordmark">DELIK<b>TA</b></span>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <img class="icon" id="heroIcon" src="assets/icon-512.png" alt="Delikta">
+    <h1>DELIK<b>TA</b></h1>
+    <p class="kicker reveal in">Ein neuer Kriminalfall · täglich</p>
+    <p class="lede reveal in d2">Ein Toter im Ledersessel. Vier Verdächtige. Eine Wahrheit, die sich erst beim Weiterlesen zeigt.</p>
+    <div class="scroll-cue">
+      <span>Fall öffnen</span>
+      <span class="arrow"></span>
+    </div>
   </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="wrap">
-        <img class="hero-logo" src="assets/icon-512.png" alt="Delikta" width="120" height="120">
-        <h1>DELIKTA</h1>
-        <p class="kicker" data-i18n="hero.kicker">Ein neuer Kriminalfall · täglich</p>
-        <p class="subline" data-i18n="hero.subline">Ein neuer Fall. Jeden Tag.</p>
-        <p class="lede" data-i18n="hero.lede">Delikta ist ein täglicher Kriminalfall, der sich Kapitel für Kapitel vor dir entfaltet. Sichte Verdächtige, lies die Hinweise und überführe den Täter – allein mit Logik.</p>
-
-        <div class="downloads">
-          <!-- Android: live im Play Store -->
-          <a class="store-btn" href="https://play.google.com/store/apps/details?id=io.delikta.game" target="_blank" rel="noopener">
-            <span class="store-icon">▶</span>
-            <span class="store-line">
-              <small data-i18n="hero.store.get">Hol dir</small>
-              <strong data-i18n="hero.android">Android</strong>
-            </span>
-          </a>
-          <!-- iOS: URL noch nicht bekannt -->
-          <a class="store-btn" href="#" aria-disabled="true" role="link">
-            <span class="store-icon"></span>
-            <span class="store-line">
-              <small data-i18n="hero.store.on">Lade aus dem</small>
-              <strong data-i18n="hero.ios">iOS</strong>
-            </span>
-            <span class="badge-soon" data-i18n="hero.soon">Bald</span>
-          </a>
-        </div>
-
-        <!-- QR-Code zum Play Store (klickbar) -->
-        <a class="qr" href="https://play.google.com/store/apps/details?id=io.delikta.game" target="_blank" rel="noopener" aria-label="Delikta bei Google Play – QR-Code scannen">
-          <img src="assets/qr-android.svg" width="150" height="150" alt="QR-Code: Delikta bei Google Play" loading="lazy">
-          <span class="qr-caption" data-i18n="hero.qr">Scannen für Android</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="block">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="kicker" data-i18n="about.kicker">Die Idee</p>
-          <h2 data-i18n="about.title">Ein Fall. Jeden Tag.</h2>
-          <p data-i18n="about.text">Jeden Tag wartet genau ein Fall auf dich – für alle gleich. Er entfaltet sich Kapitel für Kapitel: Du liest die Geschichte, lernst die Verdächtigen kennen und sammelst die Hinweise. Dann prüfst du, wer Motiv, Mittel und Gelegenheit hatte, und erhebst Anklage. Liegst du richtig, wächst deine Serie.</p>
+  <!-- ============ KAPITEL 1 — Der Tatort ============ -->
+  <section class="chapter">
+    <div class="wrap chapter-grid">
+      <div class="stage">
+        <div class="phone parallax" data-speed="0.06">
+          <img src="assets/screenshots/02_story.png" alt="Delikta — der Fall entfaltet sich Kapitel für Kapitel">
         </div>
       </div>
-    </section>
-
-    <!-- CASE TYPES -->
-    <section class="block">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="kicker" data-i18n="cases.kicker">Drei Falltypen</p>
-          <h2 data-i18n="cases.title">Jeder Fall ist anders gelagert</h2>
-        </div>
-        <div class="cards">
-          <article class="card">
-            <p class="case-no" data-i18n="case.whodunit.no">FALL-TYP A</p>
-            <h3 data-i18n="case.whodunit.title">Täter</h3>
-            <p data-i18n="case.whodunit.text">Genau eine Person vereint Motiv, Mittel und Gelegenheit. Wer ist der Täter?</p>
-          </article>
-          <article class="card">
-            <p class="case-no" data-i18n="case.komplizen.no">FALL-TYP B</p>
-            <h3 data-i18n="case.komplizen.title">Komplizen</h3>
-            <p data-i18n="case.komplizen.text">Die Tat erforderte zwei Komplizen – beide hatten Motiv, Mittel und Gelegenheit. Benenne beide.</p>
-          </article>
-          <article class="card">
-            <p class="case-no" data-i18n="case.luege.no">FALL-TYP C</p>
-            <h3 data-i18n="case.luege.title">Falsche Aussage</h3>
-            <p data-i18n="case.luege.text">Die Aussagen widersprechen sich: Genau eine Zeugenaussage ist gelogen. Finde die Lüge.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="block">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="kicker" data-i18n="how.kicker">So funktioniert's</p>
-          <h2 data-i18n="how.title">Ermitteln statt raten</h2>
-        </div>
-        <div class="steps">
-          <div class="step">
-            <div class="num">1</div>
-            <h4 data-i18n="how.s1.title">Geschichte lesen</h4>
-            <p data-i18n="how.s1.text">Der Fall entfaltet sich Kapitel für Kapitel – Verdächtige und Hinweise tauchen nach und nach auf.</p>
-          </div>
-          <div class="step">
-            <div class="num">2</div>
-            <h4 data-i18n="how.s2.title">Hinweise sammeln</h4>
-            <p data-i18n="how.s2.text">Tippe verdächtige Sätze im Text an und sammle sie in deinem Hinweisbuch. Prüfe im Raster, wer Motiv, Mittel und Gelegenheit hatte.</p>
-          </div>
-          <div class="step">
-            <div class="num">3</div>
-            <h4 data-i18n="how.s3.title">Anklage erheben</h4>
-            <p data-i18n="how.s3.text">Triff deine Entscheidung. Die Auflösung zeigt die lückenlose Beweiskette.</p>
-          </div>
-        </div>
-        <div class="attr-row">
-          <span class="attr-chip" data-i18n="how.attr.motive">Motiv</span>
-          <span class="attr-chip" data-i18n="how.attr.means">Mittel</span>
-          <span class="attr-chip" data-i18n="how.attr.opportunity">Gelegenheit</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- FEATURES -->
-    <section class="block">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="kicker" data-i18n="feat.kicker">Im Spiel</p>
-          <h2 data-i18n="feat.title">Mehr als ein Rätsel</h2>
-        </div>
-        <div class="cards cards--two">
-          <article class="card">
-            <h3 data-i18n="feat.story.title">Fall als Geschichte</h3>
-            <p data-i18n="feat.story.text">Jeder Fall entfaltet sich Kapitel für Kapitel. Du folgst der Erzählung, lernst die Verdächtigen mit Porträt und Aussage kennen und deckst die Hinweise Schritt für Schritt auf.</p>
-          </article>
-          <article class="card">
-            <h3 data-i18n="feat.notebook.title">Dein Hinweisbuch</h3>
-            <p data-i18n="feat.notebook.text">Ermittle aktiv: Tippe im Fall auf jeden Satz, der dir verdächtig vorkommt, und sammle ihn in deinem Hinweisbuch. So baust du deine Beweiskette selbst zusammen.</p>
-          </article>
-          <article class="card">
-            <h3 data-i18n="feat.streak.title">Halte deine Serie</h3>
-            <p data-i18n="feat.streak.text">Löse den Fall des Tages und halte deine Serie am Leben. Melde dich optional mit Google oder Apple an – so wandert dein Fortschritt geräteübergreifend mit.</p>
-          </article>
-          <article class="card">
-            <h3 data-i18n="feat.leaderboard.title">Miss dich mit anderen</h3>
-            <p data-i18n="feat.leaderboard.text">Auf den Bestenlisten zählt, was du löst: aktuelle Serie, beste Serie, gelöste und gespielte Fälle. Klettere nach oben und behaupte deinen Platz.</p>
-          </article>
-          <article class="card">
-            <h3 data-i18n="feat.delikts.title">Delikts für die Ermittlung</h3>
-            <p data-i18n="feat.delikts.text">Delikts sind deine Ermittlungswährung: Setze sie für Tipps, einen zweiten Versuch oder eine zusätzliche Befragung ein. Verdiene sie kostenlos per Video – oder hol dir ein Paket, wenn du magst.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- SCREENSHOTS -->
-    <section class="block">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="kicker" data-i18n="shots.kicker">Einblick</p>
-          <h2 data-i18n="shots.title">Ermittlerischer Noir-Look</h2>
-        </div>
-        <div class="shots">
-          <img src="assets/screenshots/01_menu.png" alt="Delikta — Menü mit Tagesfall, Serie und Delikts" loading="lazy">
-          <img src="assets/screenshots/02_story.png" alt="Delikta — Fall als Geschichte, Kapitel für Kapitel" loading="lazy">
-          <img src="assets/screenshots/03_anklage.png" alt="Delikta — Anklage mit Verdächtigen und Ermittlungsraster" loading="lazy">
-          <img src="assets/screenshots/04_delikts.png" alt="Delikta — Deliktübersicht: Kontostand und Verlauf" loading="lazy">
-          <img src="assets/screenshots/05_aufloesung.png" alt="Delikta — Auflösung des Falls" loading="lazy">
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="wrap footer-grid">
-      <div class="footer-brand">
-        <img src="assets/icon-96.png" alt="" width="28" height="28">
-        <div>
-          <strong>DELIKTA</strong><br>
-          <span class="muted" data-i18n="footer.tagline">Ein neuer Fall. Jeden Tag.</span>
-        </div>
-      </div>
-      <div class="footer-links">
-        <a href="privacy.html" data-i18n="footer.privacy">Datenschutz</a>
-        <a href="delete-account.html" data-i18n="footer.delete">Account löschen</a>
-        <a href="mailto:swordiapps@gmail.com" data-i18n="footer.contact">Kontakt</a>
+      <div class="text">
+        <span class="num reveal">Die Kriminalgeschichte</span>
+        <h2 class="reveal d1">Der Fall entfaltet sich <span class="accent">Kapitel für Kapitel.</span></h2>
+        <p class="reveal d2">Kein trockenes Rätsel, sondern eine Geschichte. Du liest dich durch die Nacht des Verbrechens – und mit jedem Kapitel treten neue Verdächtige und Hinweise ans Licht. Lass dir den Fall sogar vorlesen.</p>
       </div>
     </div>
+  </section>
+
+  <!-- ============ ZITAT-PAPIER ============ -->
+  <section class="quote">
+    <div class="wrap">
+      <div class="paper reveal blur">
+        <span class="stamp">Akte #128</span>
+        <blockquote class="drop"><span class="dc">D</span>er Hausdiener findet den Konsul im Ledersessel, die Hände gefaltet, das Gesicht blass wie Porzellan – und neben ihm eine halbleere Flasche Kognak.</blockquote>
+        <cite>— aus „Stiller Tod im Rauchsalon"</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KAPITEL — Die Verdächtigen ============ -->
+  <section class="chapter">
+    <div class="wrap chapter-grid reverse">
+      <div class="stage">
+        <div class="phone parallax" data-speed="-0.05">
+          <img src="assets/screenshots/06_persons.png" alt="Delikta — die Verdächtigen mit Porträt, Rolle und Aussage">
+        </div>
+      </div>
+      <div class="text">
+        <span class="num reveal">Die Verdächtigen</span>
+        <h2 class="reveal d1">Jeder hat ein <span class="accent">Motiv – und eine Geschichte.</span></h2>
+        <p class="reveal d2">Lerne die Verdächtigen kennen: Porträt, Rolle und ihre Beziehung zum Opfer. Ihre Aussagen und Alibis widersprechen sich – und genau in diesen Widersprüchen liegt die Wahrheit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KAPITEL — Die Ermittlung ============ -->
+  <section class="chapter">
+    <div class="wrap chapter-grid">
+      <div class="stage">
+        <div class="phone parallax" data-speed="0.06">
+          <img src="assets/screenshots/03_anklage.png" alt="Delikta — Verdächtige und Ermittlungsraster">
+        </div>
+      </div>
+      <div class="text">
+        <span class="num reveal">Die Ermittlung</span>
+        <h2 class="reveal d1">Sammle deine <span class="accent">Beweiskette selbst.</span></h2>
+        <p class="reveal d2">Tippe im Text auf jeden Satz, der dir verdächtig vorkommt – er wandert in dein Hinweisbuch. Prüfe im Ermittlungsraster, wer Motiv, Mittel und Gelegenheit hatte, und erhebe Anklage.</p>
+        <div class="chips reveal d3">
+          <span class="chip">Motiv</span>
+          <span class="chip">Mittel</span>
+          <span class="chip">Gelegenheit</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FALLTYPEN ============ -->
+  <section class="types">
+    <div class="wrap">
+      <div class="center-head">
+        <p class="kicker reveal">Drei Falltypen</p>
+        <h2 class="reveal d1">Jeder Fall ist anders gelagert</h2>
+      </div>
+      <div class="type-row">
+        <article class="tcard reveal">
+          <p class="t">Fall-Typ A</p>
+          <h3>Täter</h3>
+          <p>Genau eine Person vereint Motiv, Mittel und Gelegenheit. Wer ist der Täter?</p>
+        </article>
+        <article class="tcard reveal d1">
+          <p class="t">Fall-Typ B</p>
+          <h3>Komplizen</h3>
+          <p>Die Tat erforderte zwei Komplizen – beide hatten Motiv, Mittel und Gelegenheit. Benenne beide.</p>
+        </article>
+        <article class="tcard reveal d2">
+          <p class="t">Fall-Typ C</p>
+          <h3>Falsche Aussage</h3>
+          <p>Die Aussagen widersprechen sich: Genau eine ist gelogen. Finde die Lüge.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURE — Delikts ============ -->
+  <section class="feature">
+    <div class="wrap feature-grid">
+      <div class="fshot">
+        <img class="shot parallax" data-speed="0.04" src="assets/screenshots/04_delikts.png" alt="Delikta — Deliktübersicht mit Kontostand und Verlauf">
+      </div>
+      <div class="fcopy">
+        <p class="kicker reveal">Deine Ermittlungswährung</p>
+        <h2 class="reveal d1">Delikts, wenn's knifflig wird</h2>
+        <p class="reveal d2">Setze Delikts für einen Tipp, einen zweiten Versuch oder eine zusätzliche Befragung ein. Verdiene sie kostenlos per Video – oder hol dir ein Paket, wenn du magst.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STAT-BAND — Serie & Bestenliste ============ -->
+  <section class="stats">
+    <div class="wrap">
+      <div class="center-head">
+        <p class="kicker reveal">Bleib dran</p>
+        <h2 class="reveal d1">Halte deine Serie – miss dich mit anderen</h2>
+      </div>
+      <div class="stat-row">
+        <div class="stat reveal">
+          <div class="big" data-count="365">0</div>
+          <div class="lbl">Fälle im Jahr</div>
+        </div>
+        <div class="stat reveal d1">
+          <div class="big" data-count="8" data-suffix="">0</div>
+          <div class="lbl">Tage Serie in Folge</div>
+        </div>
+        <div class="stat reveal d2">
+          <div class="big" data-count="4" data-suffix="">0</div>
+          <div class="lbl">Bestenlisten</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AUFLÖSUNG / CTA ============ -->
+  <section class="solve">
+    <img class="stamp-img reveal" src="assets/stamp-geloest.svg" alt="Gelöst" width="180" height="180">
+    <h2 class="reveal d1">Der nächste Fall wartet.</h2>
+    <p class="reveal d2">Lade Delikta und beginne noch heute deine Serie. Ein neuer Fall. Jeden Tag.</p>
+
+    <div class="getapp reveal d2">
+      <!-- Android: Badge + QR zusammenstehend -->
+      <div class="plat plat-live">
+        <a class="badge" href="https://play.google.com/store/apps/details?id=io.delikta.game" target="_blank" rel="noopener" aria-label="Delikta bei Google Play herunterladen">
+          <svg viewBox="0 0 180 53" width="170" height="50" role="img" aria-hidden="true">
+            <rect x="1" y="1" width="178" height="51" rx="9" fill="#000" stroke="#4a4f57"/>
+            <g transform="translate(16,12.5)">
+              <path fill="#00D2FF" d="M0 .7C-.1 1 0 1.3 0 1.7v24.6c0 .4 0 .7.1 1L13.2 14 0 .7Z"/>
+              <path fill="#00E676" d="M.6.2 18 10.2l-3.8 3.8L.6.2Z"/>
+              <path fill="#FFCE00" d="M18 10.2l4.7 2.7c1.6.9 1.6 2.4 0 3.3L18 18.9 14.2 14 18 10.2Z"/>
+              <path fill="#FF3D47" d="M.6 27.8 14.2 14 18 18.9.6 27.8Z"/>
+            </g>
+            <text x="46" y="21" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="8" letter-spacing="1">GET IT ON</text>
+            <text x="46" y="39" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="600">Google Play</text>
+          </svg>
+        </a>
+        <a class="qrtile" href="https://play.google.com/store/apps/details?id=io.delikta.game" target="_blank" rel="noopener" aria-label="Delikta bei Google Play – QR-Code scannen">
+          <img src="assets/qr-android.svg" alt="QR-Code: Delikta bei Google Play">
+          <span>Scannen &amp; laden</span>
+        </a>
+      </div>
+
+      <!-- iOS: Badge + Hinweis zusammenstehend -->
+      <div class="plat plat-soon">
+        <span class="badge badge-off" aria-label="Delikta im App Store – bald verfügbar">
+          <svg viewBox="0 0 180 53" width="170" height="50" role="img" aria-hidden="true">
+            <rect x="1" y="1" width="178" height="51" rx="9" fill="#000" stroke="#4a4f57"/>
+            <path fill="#fff" transform="translate(18,13)" d="M13.6 6.9c-.9 1.1-2.3 2-3.7 1.9-.2-1.4.5-2.9 1.3-3.8.9-1.1 2.4-1.9 3.6-2 .2 1.5-.4 2.9-1.2 3.9Zm1.2 2c-2 0-3.7 1.1-4.7 1.1-1 0-2.5-1.1-4.1-1-2.1 0-4.1 1.2-5.1 3.1-2.2 3.8-.6 9.4 1.6 12.5 1 1.5 2.3 3.2 3.9 3.1 1.5-.1 2.1-1 4-1s2.4 1 4.1 1c1.7 0 2.7-1.5 3.8-3 1.2-1.7 1.6-3.4 1.7-3.5-.1 0-3.3-1.3-3.3-5 0-3.1 2.5-4.5 2.6-4.6-1.4-2.1-3.6-2.3-4.4-2.4Z"/>
+            <text x="52" y="21" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="8" letter-spacing="1">Download on the</text>
+            <text x="52" y="39" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="600">App Store</text>
+          </svg>
+        </span>
+        <span class="soon-note">In Kürze verfügbar</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong style="color:var(--text)">DELIKTA</strong> — Ein neuer Fall. Jeden Tag.</p>
+    <p style="margin-top:10px">
+      <a href="privacy.html">Datenschutz</a>
+      <a href="delete-account.html">Account löschen</a>
+      <a href="mailto:swordiapps@gmail.com">Kontakt</a>
+    </p>
   </footer>
 
-  <script src="js/i18n.js"></script>
+  <script>
+  (function(){
+    "use strict";
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ---- Reveal on scroll via IntersectionObserver ---- */
+    var reveals = document.querySelectorAll(".reveal:not(.in)");
+    if ("IntersectionObserver" in window && !reduce){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+        });
+      }, {threshold:0.18, rootMargin:"0px 0px -8% 0px"});
+      reveals.forEach(function(el){ io.observe(el); });
+    } else {
+      reveals.forEach(function(el){ el.classList.add("in"); });
+    }
+
+    /* ---- Count-up für Statistiken ---- */
+    var counters = document.querySelectorAll("[data-count]");
+    function runCount(el){
+      var target = parseInt(el.getAttribute("data-count"),10);
+      var suffix = el.getAttribute("data-suffix")||"";
+      if(reduce){ el.textContent = target+suffix; return; }
+      var start = null, dur = 1400;
+      function step(ts){
+        if(!start) start = ts;
+        var p = Math.min((ts-start)/dur,1);
+        var eased = 1-Math.pow(1-p,3);
+        el.textContent = Math.round(target*eased)+suffix;
+        if(p<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    if ("IntersectionObserver" in window){
+      var cio = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ runCount(e.target); cio.unobserve(e.target); } });
+      }, {threshold:0.6});
+      counters.forEach(function(el){ cio.observe(el); });
+    } else { counters.forEach(runCount); }
+
+    /* ---- Parallax + Fortschritt + Topbar (rAF-gedrosselt) ---- */
+    var fog = document.getElementById("fog");
+    var heroIcon = document.getElementById("heroIcon");
+    var topbar = document.getElementById("topbar");
+    var progress = document.getElementById("progress");
+    var parallax = Array.prototype.slice.call(document.querySelectorAll(".parallax"));
+    var dustEls = [];
+
+    /* Staubpartikel erzeugen */
+    (function makeDust(){
+      if(reduce) return;
+      var host = document.getElementById("dust");
+      var N = window.innerWidth < 640 ? 14 : 28;
+      for(var i=0;i<N;i++){
+        var s = document.createElement("span");
+        var x = (i*37)%100, y = (i*53)%100;           // deterministisch, kein Math.random
+        s.style.left = x+"vw"; s.style.top = y+"vh";
+        s.style.opacity = (0.15 + ((i*7)%20)/100).toFixed(2);
+        var sc = 1 + ((i*11)%6)/2; s.style.transform = "scale("+sc+")";
+        s.dataset.speed = (0.02 + ((i%5)*0.015)).toFixed(3);
+        host.appendChild(s); dustEls.push(s);
+      }
+    })();
+
+    var ticking = false;
+    function onScroll(){
+      if(ticking) return;
+      ticking = true;
+      requestAnimationFrame(function(){
+        var y = window.pageYOffset || document.documentElement.scrollTop;
+        var docH = document.documentElement.scrollHeight - window.innerHeight;
+        var ratio = docH>0 ? y/docH : 0;
+
+        progress.style.width = (ratio*100).toFixed(2)+"%";
+        if(y>window.innerHeight*0.6){ topbar.classList.add("show"); } else { topbar.classList.remove("show"); }
+
+        if(!reduce){
+          fog.style.transform = "translateY("+(y*0.15)+"px)";
+          if(heroIcon && y < window.innerHeight){
+            heroIcon.style.transform = "translateY("+(y*0.25)+"px) scale("+(1 - Math.min(y/2400,0.12))+")";
+          }
+          /* Screenshots: leichte, tiefengestaffelte Bewegung */
+          parallax.forEach(function(el){
+            var r = el.getBoundingClientRect();
+            var center = r.top + r.height/2 - window.innerHeight/2;
+            var sp = parseFloat(el.dataset.speed)||0;
+            el.style.transform = "translateY("+(center*sp*-1)+"px)";
+          });
+          dustEls.forEach(function(el){
+            var sp = parseFloat(el.dataset.speed)||0;
+            el.style.transform += "";
+            el.style.transform = "translateY("+(y*sp*-1)+"px)";
+          });
+        }
+        ticking = false;
+      });
+    }
+    window.addEventListener("scroll", onScroll, {passive:true});
+    window.addEventListener("resize", onScroll, {passive:true});
+    onScroll();
+  })();
+  </script>
 </body>
 </html>
