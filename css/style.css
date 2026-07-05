@@ -287,6 +287,12 @@ section.block { padding: 64px 0; border-top: 1px solid var(--line); }
   max-width: 760px;
   margin-inline: auto;
 }
+/* Ungerade letzte Karte (z. B. 5.) mittig über beide Spalten */
+.cards--two > .card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  max-width: calc((760px - 22px) / 2);
+  justify-self: center;
+}
 .card {
   background: var(--panel);
   border: 1px solid var(--line);

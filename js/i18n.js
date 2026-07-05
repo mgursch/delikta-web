@@ -61,6 +61,8 @@
       "feat.streak.text": "Löse den Fall des Tages und halte deine Serie am Leben. Melde dich optional mit Google oder Apple an – so wandert dein Fortschritt geräteübergreifend mit.",
       "feat.leaderboard.title": "Miss dich mit anderen",
       "feat.leaderboard.text": "Auf den Bestenlisten zählt, was du löst: aktuelle Serie, beste Serie, gelöste und gespielte Fälle. Klettere nach oben und behaupte deinen Platz.",
+      "feat.delikts.title": "Delikts für die Ermittlung",
+      "feat.delikts.text": "Delikts sind deine Ermittlungswährung: Setze sie für Tipps, einen zweiten Versuch oder eine zusätzliche Befragung ein. Verdiene sie kostenlos per Video – oder hol dir ein Paket, wenn du magst.",
 
       "shots.kicker": "Einblick",
       "shots.title": "Ermittlerischer Noir-Look",
@@ -128,6 +130,8 @@
       "feat.streak.text": "Solve the case of the day and keep your streak alive. Sign in with Google or Apple if you like – your progress then follows you across devices.",
       "feat.leaderboard.title": "Compete with others",
       "feat.leaderboard.text": "On the leaderboards, what you solve counts: current streak, best streak, cases solved and played. Climb the ranks and defend your place.",
+      "feat.delikts.title": "Delikts for your investigation",
+      "feat.delikts.text": "Delikts are your investigation currency: spend them on hints, a second attempt or an extra interrogation. Earn them for free by watching a video – or grab a pack if you like.",
 
       "shots.kicker": "A look inside",
       "shots.title": "Investigative noir look",
