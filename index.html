@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Delikta — Der Fall entfaltet sich</title>
-  <meta name="description" content="Delikta: Ein neuer Kriminalfall. Jeden Tag. Erlebe, wie sich der Fall Kapitel für Kapitel entfaltet.">
+  <title data-i18n="meta.title">Delikta — Der Fall entfaltet sich</title>
+  <meta name="description" data-i18n-attr="content:meta.description" content="Delikta: Ein neuer Kriminalfall. Jeden Tag. Erlebe, wie sich der Fall Kapitel für Kapitel entfaltet.">
   <link rel="icon" type="image/png" sizes="180x180" href="assets/icon-180.png">
   <link rel="apple-touch-icon" href="assets/icon-180.png">
   <style>
@@ -51,6 +51,10 @@
     .topbar img{width:30px;height:30px}
     .topbar .wordmark{font-weight:800;letter-spacing:2px;font-size:16px}
     .topbar .wordmark b{color:var(--amber)}
+    /* Sprachumschalter (in der Topbar, rechts) */
+    .lang-switch{margin-left:auto;display:inline-flex;border:1px solid var(--line2);border-radius:999px;overflow:hidden;font-family:var(--mono)}
+    .lang-switch button{background:transparent;color:var(--muted);border:none;padding:6px 12px;font-size:11px;letter-spacing:1px;cursor:pointer;font-family:var(--mono)}
+    .lang-switch button[aria-pressed="true"]{background:var(--amber);color:var(--bg);font-weight:700}
 
     /* ---------- Atmosphärischer Hintergrund (Parallax-Ebenen) ---------- */
     .bg-layer{position:fixed; inset:0; z-index:-2; pointer-events:none}
@@ -280,17 +284,21 @@
   <!-- Sticky Mini-Header (erscheint nach dem Hero) -->
   <div class="topbar" id="topbar">
     <img src="assets/icon-96.png" alt="">
-    <span class="wordmark">DELIK<b>TA</b></span>
+    <span class="wordmark" data-i18n-html="brand.wordmark">DELIK<b>TA</b></span>
+    <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.switch.aria" aria-label="Sprache / Language">
+      <button type="button" data-set-lang="de" aria-pressed="false">DE</button>
+      <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+    </div>
   </div>
 
   <!-- ============ HERO ============ -->
   <header class="hero">
-    <img class="icon" id="heroIcon" src="assets/icon-512.png" alt="Delikta">
-    <h1>DELIK<b>TA</b></h1>
-    <p class="kicker reveal in">Ein neuer Kriminalfall · täglich</p>
-    <p class="lede reveal in d2">Ein Toter im Ledersessel. Vier Verdächtige. Eine Wahrheit, die sich erst beim Weiterlesen zeigt.</p>
+    <img class="icon" id="heroIcon" src="assets/icon-512.png" alt="Delikta" data-i18n-attr="alt:hero.icon.alt">
+    <h1 data-i18n-html="hero.h1">DELIK<b>TA</b></h1>
+    <p class="kicker reveal in" data-i18n="hero.kicker">Ein neuer Kriminalfall · täglich</p>
+    <p class="lede reveal in d2" data-i18n="hero.lede">Ein Toter im Ledersessel. Vier Verdächtige. Eine Wahrheit, die sich erst beim Weiterlesen zeigt.</p>
     <div class="scroll-cue">
-      <span>Fall öffnen</span>
+      <span data-i18n="hero.scrollcue">Fall öffnen</span>
       <span class="arrow"></span>
     </div>
   </header>
@@ -300,13 +308,13 @@
     <div class="wrap chapter-grid">
       <div class="stage">
         <div class="phone parallax" data-speed="0.06">
-          <img src="assets/screenshots/02_story.png" alt="Delikta — der Fall entfaltet sich Kapitel für Kapitel">
+          <img src="assets/screenshots/02_story.png" alt="Delikta — der Fall entfaltet sich Kapitel für Kapitel" data-i18n-attr="alt:chapter.krimi.img.alt">
         </div>
       </div>
       <div class="text">
-        <span class="num reveal">Die Kriminalgeschichte</span>
-        <h2 class="reveal d1">Der Fall entfaltet sich <span class="accent">Kapitel für Kapitel.</span></h2>
-        <p class="reveal d2">Kein trockenes Rätsel, sondern eine Geschichte. Du liest dich durch die Nacht des Verbrechens – und mit jedem Kapitel treten neue Verdächtige und Hinweise ans Licht. Lass dir den Fall sogar vorlesen.</p>
+        <span class="num reveal" data-i18n="chapter.krimi.num">Die Kriminalgeschichte</span>
+        <h2 class="reveal d1" data-i18n-html="chapter.krimi.h2">Der Fall entfaltet sich <span class="accent">Kapitel für Kapitel.</span></h2>
+        <p class="reveal d2" data-i18n="chapter.krimi.p">Kein trockenes Rätsel, sondern eine Geschichte. Du liest dich durch die Nacht des Verbrechens – und mit jedem Kapitel treten neue Verdächtige und Hinweise ans Licht. Lass dir den Fall sogar vorlesen.</p>
       </div>
     </div>
   </section>
@@ -315,9 +323,9 @@
   <section class="quote">
     <div class="wrap">
       <div class="paper reveal blur">
-        <span class="stamp">Akte #128</span>
-        <blockquote class="drop"><span class="dc">D</span>er Hausdiener findet den Konsul im Ledersessel, die Hände gefaltet, das Gesicht blass wie Porzellan – und neben ihm eine halbleere Flasche Kognak.</blockquote>
-        <cite>— aus „Stiller Tod im Rauchsalon"</cite>
+        <span class="stamp" data-i18n="quote.stamp">Akte #128</span>
+        <blockquote class="drop" data-i18n-html="quote.text"><span class="dc">D</span>er Hausdiener findet den Konsul im Ledersessel, die Hände gefaltet, das Gesicht blass wie Porzellan – und neben ihm eine halbleere Flasche Kognak.</blockquote>
+        <cite data-i18n="quote.cite">— aus „Stiller Tod im Rauchsalon“</cite>
       </div>
     </div>
   </section>
@@ -327,13 +335,13 @@
     <div class="wrap chapter-grid reverse">
       <div class="stage">
         <div class="phone parallax" data-speed="-0.05">
-          <img src="assets/screenshots/06_persons.png" alt="Delikta — die Verdächtigen mit Porträt, Rolle und Aussage">
+          <img src="assets/screenshots/06_persons.png" alt="Delikta — die Verdächtigen mit Porträt, Rolle und Aussage" data-i18n-attr="alt:chapter.suspects.img.alt">
         </div>
       </div>
       <div class="text">
-        <span class="num reveal">Die Verdächtigen</span>
-        <h2 class="reveal d1">Jeder hat ein <span class="accent">Motiv – und eine Geschichte.</span></h2>
-        <p class="reveal d2">Lerne die Verdächtigen kennen: Porträt, Rolle und ihre Beziehung zum Opfer. Ihre Aussagen und Alibis widersprechen sich – und genau in diesen Widersprüchen liegt die Wahrheit.</p>
+        <span class="num reveal" data-i18n="chapter.suspects.num">Die Verdächtigen</span>
+        <h2 class="reveal d1" data-i18n-html="chapter.suspects.h2">Jeder hat ein <span class="accent">Motiv – und eine Geschichte.</span></h2>
+        <p class="reveal d2" data-i18n="chapter.suspects.p">Lerne die Verdächtigen kennen: Porträt, Rolle und ihre Beziehung zum Opfer. Ihre Aussagen und Alibis widersprechen sich – und genau in diesen Widersprüchen liegt die Wahrheit.</p>
       </div>
     </div>
   </section>
@@ -343,17 +351,17 @@
     <div class="wrap chapter-grid">
       <div class="stage">
         <div class="phone parallax" data-speed="0.06">
-          <img src="assets/screenshots/03_anklage.png" alt="Delikta — Verdächtige und Ermittlungsraster">
+          <img src="assets/screenshots/03_anklage.png" alt="Delikta — Verdächtige und Ermittlungsraster" data-i18n-attr="alt:chapter.investigation.img.alt">
         </div>
       </div>
       <div class="text">
-        <span class="num reveal">Die Ermittlung</span>
-        <h2 class="reveal d1">Sammle deine <span class="accent">Beweiskette selbst.</span></h2>
-        <p class="reveal d2">Tippe im Text auf jeden Satz, der dir verdächtig vorkommt – er wandert in dein Hinweisbuch. Prüfe im Ermittlungsraster, wer Motiv, Mittel und Gelegenheit hatte, und erhebe Anklage.</p>
+        <span class="num reveal" data-i18n="chapter.investigation.num">Die Ermittlung</span>
+        <h2 class="reveal d1" data-i18n-html="chapter.investigation.h2">Sammle deine <span class="accent">Beweiskette selbst.</span></h2>
+        <p class="reveal d2" data-i18n="chapter.investigation.p">Tippe im Text auf jeden Satz, der dir verdächtig vorkommt – er wandert in dein Hinweisbuch. Prüfe im Ermittlungsraster, wer Motiv, Mittel und Gelegenheit hatte, und erhebe Anklage.</p>
         <div class="chips reveal d3">
-          <span class="chip">Motiv</span>
-          <span class="chip">Mittel</span>
-          <span class="chip">Gelegenheit</span>
+          <span class="chip" data-i18n="chapter.investigation.chip.motiv">Motiv</span>
+          <span class="chip" data-i18n="chapter.investigation.chip.mittel">Mittel</span>
+          <span class="chip" data-i18n="chapter.investigation.chip.gelegenheit">Gelegenheit</span>
         </div>
       </div>
     </div>
@@ -363,24 +371,24 @@
   <section class="types">
     <div class="wrap">
       <div class="center-head">
-        <p class="kicker reveal">Drei Falltypen</p>
-        <h2 class="reveal d1">Jeder Fall ist anders gelagert</h2>
+        <p class="kicker reveal" data-i18n="types.kicker">Drei Falltypen</p>
+        <h2 class="reveal d1" data-i18n="types.h2">Jeder Fall ist anders gelagert</h2>
       </div>
       <div class="type-row">
         <article class="tcard reveal">
-          <p class="t">Fall-Typ A</p>
-          <h3>Täter</h3>
-          <p>Genau eine Person vereint Motiv, Mittel und Gelegenheit. Wer ist der Täter?</p>
+          <p class="t" data-i18n="types.a.tag">Fall-Typ A</p>
+          <h3 data-i18n="types.a.h3">Täter</h3>
+          <p data-i18n="types.a.p">Genau eine Person vereint Motiv, Mittel und Gelegenheit. Wer ist der Täter?</p>
         </article>
         <article class="tcard reveal d1">
-          <p class="t">Fall-Typ B</p>
-          <h3>Komplizen</h3>
-          <p>Die Tat erforderte zwei Komplizen – beide hatten Motiv, Mittel und Gelegenheit. Benenne beide.</p>
+          <p class="t" data-i18n="types.b.tag">Fall-Typ B</p>
+          <h3 data-i18n="types.b.h3">Komplizen</h3>
+          <p data-i18n="types.b.p">Die Tat erforderte zwei Komplizen – beide hatten Motiv, Mittel und Gelegenheit. Benenne beide.</p>
         </article>
         <article class="tcard reveal d2">
-          <p class="t">Fall-Typ C</p>
-          <h3>Falsche Aussage</h3>
-          <p>Die Aussagen widersprechen sich: Genau eine ist gelogen. Finde die Lüge.</p>
+          <p class="t" data-i18n="types.c.tag">Fall-Typ C</p>
+          <h3 data-i18n="types.c.h3">Falsche Aussage</h3>
+          <p data-i18n="types.c.p">Die Aussagen widersprechen sich: Genau eine ist gelogen. Finde die Lüge.</p>
         </article>
       </div>
     </div>
@@ -390,12 +398,12 @@
   <section class="feature">
     <div class="wrap feature-grid">
       <div class="fshot">
-        <img class="shot parallax" data-speed="0.04" src="assets/screenshots/04_delikts.png" alt="Delikta — Deliktübersicht mit Kontostand und Verlauf">
+        <img class="shot parallax" data-speed="0.04" src="assets/screenshots/04_delikts.png" alt="Delikta — Deliktübersicht mit Kontostand und Verlauf" data-i18n-attr="alt:feature.delikts.img.alt">
       </div>
       <div class="fcopy">
-        <p class="kicker reveal">Deine Ermittlungswährung</p>
-        <h2 class="reveal d1">Delikts, wenn's knifflig wird</h2>
-        <p class="reveal d2">Setze Delikts für einen Tipp, einen zweiten Versuch oder eine zusätzliche Befragung ein. Verdiene sie kostenlos per Video – oder hol dir ein Paket, wenn du magst.</p>
+        <p class="kicker reveal" data-i18n="feature.delikts.kicker">Deine Ermittlungswährung</p>
+        <h2 class="reveal d1" data-i18n="feature.delikts.h2">Delikts, wenn's knifflig wird</h2>
+        <p class="reveal d2" data-i18n="feature.delikts.p">Setze Delikts für einen Tipp, einen zweiten Versuch oder eine zusätzliche Befragung ein. Verdiene sie kostenlos per Video – oder hol dir ein Paket, wenn du magst.</p>
       </div>
     </div>
   </section>
@@ -404,37 +412,37 @@
   <section class="stats">
     <div class="wrap">
       <div class="center-head">
-        <p class="kicker reveal">Bleib dran</p>
-        <h2 class="reveal d1">Halte deine Serie – miss dich mit anderen</h2>
+        <p class="kicker reveal" data-i18n="stats.kicker">Bleib dran</p>
+        <h2 class="reveal d1" data-i18n="stats.h2">Halte deine Serie – miss dich mit anderen</h2>
       </div>
       <div class="stat-row">
         <div class="stat reveal">
           <div class="big" data-count="365">0</div>
-          <div class="lbl">Fälle im Jahr</div>
+          <div class="lbl" data-i18n="stats.faelle.label">Fälle im Jahr</div>
         </div>
         <div class="stat reveal d1">
           <div class="big" data-count="8" data-suffix="">0</div>
-          <div class="lbl">Tage Serie in Folge</div>
+          <div class="lbl" data-i18n="stats.serie.label">Tage Serie in Folge</div>
         </div>
         <div class="stat reveal d2">
           <div class="big" data-count="4" data-suffix="">0</div>
-          <div class="lbl">Bestenlisten</div>
+          <div class="lbl" data-i18n="stats.bestenlisten.label">Bestenlisten</div>
         </div>
       </div>
-      <p class="note reveal d3">Mit dem Homescreen-Widget hast du deinen Tagesfall und deine Serie immer im Blick – samt Countdown und Warnung, bevor die Serie reißt.</p>
+      <p class="note reveal d3" data-i18n="stats.note">Mit dem Homescreen-Widget hast du deinen Tagesfall und deine Serie immer im Blick – samt Countdown und Warnung, bevor die Serie reißt.</p>
     </div>
   </section>
 
   <!-- ============ AUFLÖSUNG / CTA ============ -->
   <section class="solve">
-    <img class="stamp-img reveal" src="assets/stamp-geloest.svg" alt="Gelöst" width="180" height="180">
-    <h2 class="reveal d1">Der nächste Fall wartet.</h2>
-    <p class="reveal d2">Lade Delikta und beginne noch heute deine Serie. Ein neuer Fall. Jeden Tag.</p>
+    <img class="stamp-img reveal" src="assets/stamp-geloest.svg" alt="Gelöst" width="180" height="180" data-i18n-attr="alt:solve.stamp.alt,src:solve.stamp.src">
+    <h2 class="reveal d1" data-i18n="solve.h2">Der nächste Fall wartet.</h2>
+    <p class="reveal d2" data-i18n="solve.p">Lade Delikta und beginne noch heute deine Serie. Ein neuer Fall. Jeden Tag.</p>
 
     <div class="getapp reveal d2">
       <!-- Android: Badge + QR zusammenstehend -->
       <div class="plat plat-live">
-        <a class="badge" href="https://play.google.com/store/apps/details?id=io.delikta.game" target="_blank" rel="noopener" aria-label="Delikta bei Google Play herunterladen">
+        <a class="badge" href="https://play.google.com/store/apps/details?id=io.delikta.game" target="_blank" rel="noopener" aria-label="Delikta bei Google Play herunterladen" data-i18n-attr="aria-label:solve.android.badge.aria">
           <svg viewBox="0 0 180 53" width="170" height="50" role="img" aria-hidden="true">
             <rect x="1" y="1" width="178" height="51" rx="9" fill="#000" stroke="#4a4f57"/>
             <g transform="translate(16,12.5)">
@@ -447,15 +455,15 @@
             <text x="46" y="39" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="600">Google Play</text>
           </svg>
         </a>
-        <a class="qrtile" href="https://play.google.com/store/apps/details?id=io.delikta.game" target="_blank" rel="noopener" aria-label="Delikta bei Google Play – QR-Code scannen">
-          <img src="assets/qr-android.svg" alt="QR-Code: Delikta bei Google Play">
-          <span>Scannen &amp; laden</span>
+        <a class="qrtile" href="https://play.google.com/store/apps/details?id=io.delikta.game" target="_blank" rel="noopener" aria-label="Delikta bei Google Play – QR-Code scannen" data-i18n-attr="aria-label:solve.android.qr.aria">
+          <img src="assets/qr-android.svg" alt="QR-Code: Delikta bei Google Play" data-i18n-attr="alt:solve.android.qr.img.alt">
+          <span data-i18n="solve.android.qr.label">Scannen &amp; laden</span>
         </a>
       </div>
 
       <!-- iOS: Badge + Hinweis zusammenstehend -->
       <div class="plat plat-soon">
-        <span class="badge badge-off" aria-label="Delikta im App Store – bald verfügbar">
+        <span class="badge badge-off" aria-label="Delikta im App Store – bald verfügbar" data-i18n-attr="aria-label:solve.ios.badge.aria">
           <svg viewBox="0 0 180 53" width="170" height="50" role="img" aria-hidden="true">
             <rect x="1" y="1" width="178" height="51" rx="9" fill="#000" stroke="#4a4f57"/>
             <path fill="#fff" transform="translate(18,13)" d="M13.6 6.9c-.9 1.1-2.3 2-3.7 1.9-.2-1.4.5-2.9 1.3-3.8.9-1.1 2.4-1.9 3.6-2 .2 1.5-.4 2.9-1.2 3.9Zm1.2 2c-2 0-3.7 1.1-4.7 1.1-1 0-2.5-1.1-4.1-1-2.1 0-4.1 1.2-5.1 3.1-2.2 3.8-.6 9.4 1.6 12.5 1 1.5 2.3 3.2 3.9 3.1 1.5-.1 2.1-1 4-1s2.4 1 4.1 1c1.7 0 2.7-1.5 3.8-3 1.2-1.7 1.6-3.4 1.7-3.5-.1 0-3.3-1.3-3.3-5 0-3.1 2.5-4.5 2.6-4.6-1.4-2.1-3.6-2.3-4.4-2.4Z"/>
@@ -463,17 +471,17 @@
             <text x="52" y="39" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="600">App Store</text>
           </svg>
         </span>
-        <span class="soon-note">In Kürze verfügbar</span>
+        <span class="soon-note" data-i18n="solve.ios.soon">In Kürze verfügbar</span>
       </div>
     </div>
   </section>
 
   <footer>
-    <p><strong style="color:var(--text)">DELIKTA</strong> — Ein neuer Fall. Jeden Tag.</p>
+    <p data-i18n-html="footer.brandline"><strong style="color:var(--text)">DELIKTA</strong> — Ein neuer Fall. Jeden Tag.</p>
     <p style="margin-top:10px">
-      <a href="privacy.html">Datenschutz</a>
-      <a href="delete-account.html">Account löschen</a>
-      <a href="mailto:swordiapps@gmail.com">Kontakt</a>
+      <a href="privacy.html" data-i18n="footer.link.privacy">Datenschutz</a>
+      <a href="delete-account.html" data-i18n="footer.link.delete">Account löschen</a>
+      <a href="mailto:swordiapps@gmail.com" data-i18n="footer.link.contact">Kontakt</a>
     </p>
   </footer>
 
@@ -580,5 +588,6 @@
     onScroll();
   })();
   </script>
+  <script src="js/i18n.js"></script>
 </body>
 </html>

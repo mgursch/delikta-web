@@ -11,7 +11,7 @@ Drei Seiten, im Noir-Look der App, zweisprachig (Deutsch / Englisch), ohne Build
 | `privacy.html` | Datenschutzerklärung (DSGVO-orientierter **Entwurf**, DE + EN) — wird in den Stores hinterlegt |
 | `delete-account.html` | Anleitung zur Account-Löschung (DE + EN) — wird in den Stores hinterlegt |
 | `css/style.css` | Noir-Theme, Farbtokens 1:1 aus `core/ui/.../Theme.kt` — nur noch von `privacy.html`/`delete-account.html` genutzt |
-| `js/i18n.js` | Clientseitiger Sprachumschalter (DE/EN) — nur noch von `privacy.html`/`delete-account.html` genutzt |
+| `js/i18n.js` | Clientseitiger Sprachumschalter (DE/EN) für **alle** Seiten (index + Rechtsseiten). Default EN, Browsersprache überschreibt |
 | `assets/` | App-Icon (PNG, mehrere Größen), QR-Code, Gelöst-Stempel, App-Screenshots |
 
 ## Lokal ansehen
@@ -38,8 +38,10 @@ Das App-Icon (Fingerabdruck + Lupe) wird als PNG in mehreren Größen verwendet
 
 ## Sprachen
 
-DE/EN-Umschalter oben rechts. Initiale Sprache: `?lang=` → `localStorage` → Browsersprache → Default DE.
-- Kurztexte über `data-i18n="key"` (Wörterbuch in `js/i18n.js`).
+DE/EN-Umschalter (Startseite: in der Sticky-Topbar; Rechtsseiten: im Header). Initiale Sprache: `?lang=` → `localStorage` → Browsersprache → **Default EN**.
+- Kurztexte über `data-i18n="key"` (textContent); Wörterbuch in `js/i18n.js`.
+- Texte mit Inline-Markup (z. B. `<span class="accent">`, Drop-Cap, Wortmarke) über `data-i18n-html="key"` (innerHTML).
+- Attribute (alt, aria-label, title, src) über `data-i18n-attr="attr:key,…"` — u. a. der Gelöst-Stempel (`stamp-geloest.svg` ↔ `stamp-solved.svg`).
 - Lange Rechtstexte über `data-lang-block="de|en"`-Container (je Sprache ein Block).
 
 ## Deployment via GitHub Pages
@@ -73,6 +75,7 @@ Der Workflow `.github/workflows/deploy.yml` deployt bei jedem Push auf `main` au
 - [x] **Android-Download** aktiv (Google-Play-Link + QR-Code in `index.html`).
 - [ ] **iOS-Link:** sobald im App Store verfügbar, in `index.html` das App-Store-Badge (`.plat-soon`) verlinken und „In Kürze verfügbar" entfernen.
 - [x] **Echte Screenshots** in `assets/screenshots/` (aus `tagesakte-app/branding/screenshots/`).
+- [ ] **Englische Screenshots:** Die Startseite hat einen DE/EN-Umschalter; die App-Screenshots sind aktuell in beiden Sprachen deutsch. Bei EN-Sprache idealerweise englische App-Screenshots einsetzen (per Sprache umschaltbar via `data-i18n-attr="src:…"`).
 - [ ] **Datenschutz rechtlich prüfen** (`privacy.html`): Entwurf-Hinweis entfernen, Platzhalter `[…]` ausfüllen (Stand-Datum, Supabase-Region/Garantien, Consent-Mechanismus), ggf. Name/Anschrift des Verantwortlichen ergänzen.
 - [ ] **AdMob/Login-Status** abgleichen: Falls sich der tatsächliche Funktionsumfang (Werbung, Login-Anbieter) ändert, Datenschutztext anpassen.
 - [ ] Falls Custom-Domain gewünscht: `CNAME` anlegen (siehe oben).

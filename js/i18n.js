@@ -1,7 +1,10 @@
 /* ===========================================================
    Delikta Web — clientseitiger Sprachumschalter (DE/EN)
-   - Kurztexte: über data-i18n="key" + STRINGS-Wörterbuch
-   - Lange Rechtstexte: über data-lang-block="de|en" Container
+   - Kurztexte:      data-i18n="key"            -> textContent
+   - Mit Markup:     data-i18n-html="key"       -> innerHTML (z. B. <b>, <span class="accent">)
+   - Attribute:      data-i18n-attr="attr:key,…" -> setAttribute (alt, aria-label, title, src …)
+   - Lange Blöcke:   data-lang-block="de|en"    -> Sichtbarkeit (Rechtsseiten)
+   Default-Sprache: EN. Browsersprache überschreibt (DE-Browser -> DE).
    Keine Build-Abhängigkeit, kein Framework.
    =========================================================== */
 (function () {
@@ -9,138 +12,205 @@
 
   var STRINGS = {
     de: {
+      /* ---- Meta ---- */
+      "meta.title": "Delikta — Der Fall entfaltet sich",
+      "meta.description": "Delikta: Ein neuer Kriminalfall. Jeden Tag. Erlebe, wie sich der Fall Kapitel für Kapitel entfaltet.",
+
+      /* ---- Topbar / Wortmarke ---- */
+      "brand.wordmark": "DELIK<b>TA</b>",
+
+      /* ---- Hero ---- */
+      "hero.icon.alt": "Delikta",
+      "hero.h1": "DELIK<b>TA</b>",
+      "hero.kicker": "Ein neuer Kriminalfall · täglich",
+      "hero.lede": "Ein Toter im Ledersessel. Vier Verdächtige. Eine Wahrheit, die sich erst beim Weiterlesen zeigt.",
+      "hero.scrollcue": "Fall öffnen",
+
+      /* ---- Kapitel: Kriminalgeschichte ---- */
+      "chapter.krimi.img.alt": "Delikta — der Fall entfaltet sich Kapitel für Kapitel",
+      "chapter.krimi.num": "Die Kriminalgeschichte",
+      "chapter.krimi.h2": "Der Fall entfaltet sich <span class=\"accent\">Kapitel für Kapitel.</span>",
+      "chapter.krimi.p": "Kein trockenes Rätsel, sondern eine Geschichte. Du liest dich durch die Nacht des Verbrechens – und mit jedem Kapitel treten neue Verdächtige und Hinweise ans Licht. Lass dir den Fall sogar vorlesen.",
+
+      /* ---- Zitat / Akte ---- */
+      "quote.stamp": "Akte #128",
+      "quote.text": "<span class=\"dc\">D</span>er Hausdiener findet den Konsul im Ledersessel, die Hände gefaltet, das Gesicht blass wie Porzellan – und neben ihm eine halbleere Flasche Kognak.",
+      "quote.cite": "— aus „Stiller Tod im Rauchsalon“",
+
+      /* ---- Kapitel: Verdächtige ---- */
+      "chapter.suspects.img.alt": "Delikta — die Verdächtigen mit Porträt, Rolle und Aussage",
+      "chapter.suspects.num": "Die Verdächtigen",
+      "chapter.suspects.h2": "Jeder hat ein <span class=\"accent\">Motiv – und eine Geschichte.</span>",
+      "chapter.suspects.p": "Lerne die Verdächtigen kennen: Porträt, Rolle und ihre Beziehung zum Opfer. Ihre Aussagen und Alibis widersprechen sich – und genau in diesen Widersprüchen liegt die Wahrheit.",
+
+      /* ---- Kapitel: Ermittlung ---- */
+      "chapter.investigation.img.alt": "Delikta — Verdächtige und Ermittlungsraster",
+      "chapter.investigation.num": "Die Ermittlung",
+      "chapter.investigation.h2": "Sammle deine <span class=\"accent\">Beweiskette selbst.</span>",
+      "chapter.investigation.p": "Tippe im Text auf jeden Satz, der dir verdächtig vorkommt – er wandert in dein Hinweisbuch. Prüfe im Ermittlungsraster, wer Motiv, Mittel und Gelegenheit hatte, und erhebe Anklage.",
+      "chapter.investigation.chip.motiv": "Motiv",
+      "chapter.investigation.chip.mittel": "Mittel",
+      "chapter.investigation.chip.gelegenheit": "Gelegenheit",
+
+      /* ---- Falltypen ---- */
+      "types.kicker": "Drei Falltypen",
+      "types.h2": "Jeder Fall ist anders gelagert",
+      "types.a.tag": "Fall-Typ A",
+      "types.a.h3": "Täter",
+      "types.a.p": "Genau eine Person vereint Motiv, Mittel und Gelegenheit. Wer ist der Täter?",
+      "types.b.tag": "Fall-Typ B",
+      "types.b.h3": "Komplizen",
+      "types.b.p": "Die Tat erforderte zwei Komplizen – beide hatten Motiv, Mittel und Gelegenheit. Benenne beide.",
+      "types.c.tag": "Fall-Typ C",
+      "types.c.h3": "Falsche Aussage",
+      "types.c.p": "Die Aussagen widersprechen sich: Genau eine ist gelogen. Finde die Lüge.",
+
+      /* ---- Feature: Delikts ---- */
+      "feature.delikts.img.alt": "Delikta — Deliktübersicht mit Kontostand und Verlauf",
+      "feature.delikts.kicker": "Deine Ermittlungswährung",
+      "feature.delikts.h2": "Delikts, wenn's knifflig wird",
+      "feature.delikts.p": "Setze Delikts für einen Tipp, einen zweiten Versuch oder eine zusätzliche Befragung ein. Verdiene sie kostenlos per Video – oder hol dir ein Paket, wenn du magst.",
+
+      /* ---- Stats / Serie ---- */
+      "stats.kicker": "Bleib dran",
+      "stats.h2": "Halte deine Serie – miss dich mit anderen",
+      "stats.faelle.label": "Fälle im Jahr",
+      "stats.serie.label": "Tage Serie in Folge",
+      "stats.bestenlisten.label": "Bestenlisten",
+      "stats.note": "Mit dem Homescreen-Widget hast du deinen Tagesfall und deine Serie immer im Blick – samt Countdown und Warnung, bevor die Serie reißt.",
+
+      /* ---- Auflösung / CTA ---- */
+      "solve.stamp.alt": "Gelöst",
+      "solve.stamp.src": "assets/stamp-geloest.svg",
+      "solve.h2": "Der nächste Fall wartet.",
+      "solve.p": "Lade Delikta und beginne noch heute deine Serie. Ein neuer Fall. Jeden Tag.",
+      "solve.android.badge.aria": "Delikta bei Google Play herunterladen",
+      "solve.android.qr.aria": "Delikta bei Google Play – QR-Code scannen",
+      "solve.android.qr.img.alt": "QR-Code: Delikta bei Google Play",
+      "solve.android.qr.label": "Scannen & laden",
+      "solve.ios.badge.aria": "Delikta im App Store – bald verfügbar",
+      "solve.ios.soon": "In Kürze verfügbar",
+
+      /* ---- Footer (index.html: brandline mit Markup; tagline = reiner Slogan für Rechtsseiten) ---- */
+      "footer.brandline": "<strong style=\"color:var(--text)\">DELIKTA</strong> — Ein neuer Fall. Jeden Tag.",
+      "footer.link.privacy": "Datenschutz",
+      "footer.link.delete": "Account löschen",
+      "footer.link.contact": "Kontakt",
+
+      /* ---- Sprachumschalter (aria) ---- */
+      "lang.switch.aria": "Sprache / Language",
+
+      /* ===== Rechtsseiten (privacy.html / delete-account.html) ===== */
       "nav.home": "Spiel",
       "nav.privacy": "Datenschutz",
       "nav.delete": "Account löschen",
-
-      "hero.kicker": "Ein neuer Kriminalfall · täglich",
-      "hero.subline": "Ein neuer Fall. Jeden Tag.",
-      "hero.lede": "Delikta ist ein täglicher Kriminalfall, der sich Kapitel für Kapitel vor dir entfaltet. Sichte Verdächtige, lies die Hinweise und überführe den Täter – allein mit Logik.",
-      "hero.android": "Android",
-      "hero.ios": "iOS",
-      "hero.store.get": "Hol dir",
-      "hero.store.on": "Lade aus dem",
-      "hero.soon": "Bald",
-      "hero.qr": "Scannen für Android",
-
-      "about.kicker": "Die Idee",
-      "about.title": "Ein Fall. Jeden Tag.",
-      "about.text": "Jeden Tag wartet genau ein Fall auf dich – für alle gleich. Er entfaltet sich Kapitel für Kapitel: Du liest die Geschichte, lernst die Verdächtigen kennen und sammelst die Hinweise. Dann prüfst du, wer Motiv, Mittel und Gelegenheit hatte, und erhebst Anklage. Liegst du richtig, wächst deine Serie.",
-
-      "cases.kicker": "Drei Falltypen",
-      "cases.title": "Jeder Fall ist anders gelagert",
-      "case.whodunit.no": "FALL-TYP A",
-      "case.whodunit.title": "Täter",
-      "case.whodunit.text": "Genau eine Person vereint Motiv, Mittel und Gelegenheit. Wer ist der Täter?",
-      "case.komplizen.no": "FALL-TYP B",
-      "case.komplizen.title": "Komplizen",
-      "case.komplizen.text": "Die Tat erforderte zwei Komplizen – beide hatten Motiv, Mittel und Gelegenheit. Benenne beide.",
-      "case.luege.no": "FALL-TYP C",
-      "case.luege.title": "Falsche Aussage",
-      "case.luege.text": "Die Aussagen widersprechen sich: Genau eine Zeugenaussage ist gelogen. Finde die Lüge.",
-
-      "how.kicker": "So funktioniert's",
-      "how.title": "Ermitteln statt raten",
-      "how.s1.title": "Geschichte lesen",
-      "how.s1.text": "Der Fall entfaltet sich Kapitel für Kapitel – Verdächtige und Hinweise tauchen nach und nach auf.",
-      "how.s2.title": "Hinweise sammeln",
-      "how.s2.text": "Tippe verdächtige Sätze im Text an und sammle sie in deinem Hinweisbuch. Prüfe im Raster, wer Motiv, Mittel und Gelegenheit hatte.",
-      "how.s3.title": "Anklage erheben",
-      "how.s3.text": "Triff deine Entscheidung. Die Auflösung zeigt die lückenlose Beweiskette.",
-      "how.attr.motive": "Motiv",
-      "how.attr.means": "Mittel",
-      "how.attr.opportunity": "Gelegenheit",
-
-      "feat.kicker": "Im Spiel",
-      "feat.title": "Mehr als ein Rätsel",
-      "feat.story.title": "Fall als Geschichte",
-      "feat.story.text": "Jeder Fall entfaltet sich Kapitel für Kapitel. Du folgst der Erzählung, lernst die Verdächtigen mit Porträt und Aussage kennen und deckst die Hinweise Schritt für Schritt auf.",
-      "feat.notebook.title": "Dein Hinweisbuch",
-      "feat.notebook.text": "Ermittle aktiv: Tippe im Fall auf jeden Satz, der dir verdächtig vorkommt, und sammle ihn in deinem Hinweisbuch. So baust du deine Beweiskette selbst zusammen.",
-      "feat.streak.title": "Halte deine Serie",
-      "feat.streak.text": "Löse den Fall des Tages und halte deine Serie am Leben. Melde dich optional mit Google oder Apple an – so wandert dein Fortschritt geräteübergreifend mit.",
-      "feat.leaderboard.title": "Miss dich mit anderen",
-      "feat.leaderboard.text": "Auf den Bestenlisten zählt, was du löst: aktuelle Serie, beste Serie, gelöste und gespielte Fälle. Klettere nach oben und behaupte deinen Platz.",
-      "feat.delikts.title": "Delikts für die Ermittlung",
-      "feat.delikts.text": "Delikts sind deine Ermittlungswährung: Setze sie für Tipps, einen zweiten Versuch oder eine zusätzliche Befragung ein. Verdiene sie kostenlos per Video – oder hol dir ein Paket, wenn du magst.",
-
-      "shots.kicker": "Einblick",
-      "shots.title": "Ermittlerischer Noir-Look",
-
-      "footer.tagline": "Ein neuer Fall. Jeden Tag.",
       "footer.contact": "Kontakt",
       "footer.privacy": "Datenschutz",
       "footer.delete": "Account löschen",
-
+      "footer.tagline": "Ein neuer Fall. Jeden Tag.",
       "privacy.kicker": "Rechtliches",
       "privacy.title": "Datenschutzerklärung",
       "delete.kicker": "Konto",
       "delete.title": "Account löschen"
     },
+
     en: {
+      /* ---- Meta ---- */
+      "meta.title": "Delikta — The case unfolds",
+      "meta.description": "Delikta: A new crime case. Every day. Watch the case unfold chapter by chapter.",
+
+      /* ---- Topbar / Wordmark ---- */
+      "brand.wordmark": "DELIK<b>TA</b>",
+
+      /* ---- Hero ---- */
+      "hero.icon.alt": "Delikta",
+      "hero.h1": "DELIK<b>TA</b>",
+      "hero.kicker": "A new crime case · daily",
+      "hero.lede": "A dead man in a leather armchair. Four suspects. A truth that only reveals itself as you read on.",
+      "hero.scrollcue": "Open the file",
+
+      /* ---- Chapter: the crime story ---- */
+      "chapter.krimi.img.alt": "Delikta — the case unfolds chapter by chapter",
+      "chapter.krimi.num": "The crime story",
+      "chapter.krimi.h2": "The case unfolds <span class=\"accent\">chapter by chapter.</span>",
+      "chapter.krimi.p": "Not a dry puzzle, but a story. You read your way through the night of the crime – and with every chapter new suspects and clues come to light. You can even have the case read aloud.",
+
+      /* ---- Quote / file ---- */
+      "quote.stamp": "File #128",
+      "quote.text": "<span class=\"dc\">T</span>he butler finds the consul in the leather armchair, hands folded, his face pale as porcelain – and beside him a half-empty bottle of cognac.",
+      "quote.cite": "— from “A Quiet Death in the Smoking Room”",
+
+      /* ---- Chapter: the suspects ---- */
+      "chapter.suspects.img.alt": "Delikta — the suspects with portrait, role and statement",
+      "chapter.suspects.num": "The suspects",
+      "chapter.suspects.h2": "Everyone has a <span class=\"accent\">motive – and a story.</span>",
+      "chapter.suspects.p": "Get to know the suspects: portrait, role and their relationship to the victim. Their statements and alibis contradict each other – and the truth lies in exactly those contradictions.",
+
+      /* ---- Chapter: the investigation ---- */
+      "chapter.investigation.img.alt": "Delikta — suspects and investigation grid",
+      "chapter.investigation.num": "The investigation",
+      "chapter.investigation.h2": "Build your <span class=\"accent\">chain of evidence yourself.</span>",
+      "chapter.investigation.p": "Tap any sentence in the text that strikes you as suspicious – it goes straight into your notebook. Use the investigation grid to check who had motive, means and opportunity, then make your accusation.",
+      "chapter.investigation.chip.motiv": "Motive",
+      "chapter.investigation.chip.mittel": "Means",
+      "chapter.investigation.chip.gelegenheit": "Opportunity",
+
+      /* ---- Case types ---- */
+      "types.kicker": "Three case types",
+      "types.h2": "Every case is set up differently",
+      "types.a.tag": "Case type A",
+      "types.a.h3": "The Culprit",
+      "types.a.p": "Exactly one person combines motive, means and opportunity. Who is the culprit?",
+      "types.b.tag": "Case type B",
+      "types.b.h3": "Accomplices",
+      "types.b.p": "The crime required two accomplices – both had motive, means and opportunity. Name them both.",
+      "types.c.tag": "Case type C",
+      "types.c.h3": "The False Statement",
+      "types.c.p": "The statements contradict each other: exactly one is a lie. Find the lie.",
+
+      /* ---- Feature: Delikts ---- */
+      "feature.delikts.img.alt": "Delikta — Delikts overview with balance and history",
+      "feature.delikts.kicker": "Your investigation currency",
+      "feature.delikts.h2": "Delikts, when it gets tricky",
+      "feature.delikts.p": "Spend Delikts on a hint, a second attempt or an extra interrogation. Earn them for free by watching a video – or grab a pack if you like.",
+
+      /* ---- Stats / streak ---- */
+      "stats.kicker": "Stay on it",
+      "stats.h2": "Keep your streak – compete with others",
+      "stats.faelle.label": "Cases a year",
+      "stats.serie.label": "Days streak in a row",
+      "stats.bestenlisten.label": "Leaderboards",
+      "stats.note": "With the home screen widget you always have your daily case and your streak in view – including a countdown and a warning before your streak breaks.",
+
+      /* ---- Verdict / CTA ---- */
+      "solve.stamp.alt": "Solved",
+      "solve.stamp.src": "assets/stamp-solved.svg",
+      "solve.h2": "The next case is waiting.",
+      "solve.p": "Download Delikta and start your streak today. A new case. Every day.",
+      "solve.android.badge.aria": "Download Delikta on Google Play",
+      "solve.android.qr.aria": "Delikta on Google Play – scan the QR code",
+      "solve.android.qr.img.alt": "QR code: Delikta on Google Play",
+      "solve.android.qr.label": "Scan & download",
+      "solve.ios.badge.aria": "Delikta on the App Store – coming soon",
+      "solve.ios.soon": "Coming soon",
+
+      /* ---- Footer (index.html: brandline mit Markup; tagline = reiner Slogan für Rechtsseiten) ---- */
+      "footer.brandline": "<strong style=\"color:var(--text)\">DELIKTA</strong> — A new case. Every day.",
+      "footer.link.privacy": "Privacy",
+      "footer.link.delete": "Delete account",
+      "footer.link.contact": "Contact",
+
+      /* ---- Language switch (aria) ---- */
+      "lang.switch.aria": "Sprache / Language",
+
+      /* ===== Legal pages (privacy.html / delete-account.html) ===== */
       "nav.home": "Game",
       "nav.privacy": "Privacy",
       "nav.delete": "Delete account",
-
-      "hero.kicker": "A new crime case · daily",
-      "hero.subline": "A new case. Every day.",
-      "hero.lede": "Delikta is a daily crime case that unfolds before you chapter by chapter. Review the suspects, read the clues and convict the culprit – using logic alone.",
-      "hero.android": "Android",
-      "hero.ios": "iOS",
-      "hero.store.get": "Get it on",
-      "hero.store.on": "Download on the",
-      "hero.soon": "Soon",
-      "hero.qr": "Scan for Android",
-
-      "about.kicker": "The idea",
-      "about.title": "One case. Every day.",
-      "about.text": "Every day a single case awaits you – the same for everyone. It unfolds chapter by chapter: you read the story, get to know the suspects and gather the clues. Then you weigh who had motive, means and opportunity, and make your accusation. Get it right and your streak grows.",
-
-      "cases.kicker": "Three case types",
-      "cases.title": "Every case is set up differently",
-      "case.whodunit.no": "CASE TYPE A",
-      "case.whodunit.title": "The Culprit",
-      "case.whodunit.text": "Exactly one person combines motive, means and opportunity. Who is the culprit?",
-      "case.komplizen.no": "CASE TYPE B",
-      "case.komplizen.title": "Accomplices",
-      "case.komplizen.text": "The crime required two accomplices – both had motive, means and opportunity. Name them both.",
-      "case.luege.no": "CASE TYPE C",
-      "case.luege.title": "The False Statement",
-      "case.luege.text": "The statements contradict each other: exactly one witness is lying. Find the lie.",
-
-      "how.kicker": "How it works",
-      "how.title": "Investigate, don't guess",
-      "how.s1.title": "Read the story",
-      "how.s1.text": "The case unfolds chapter by chapter – suspects and clues appear one by one.",
-      "how.s2.title": "Collect the clues",
-      "how.s2.text": "Tap suspicious sentences in the text to collect them in your notebook. Use the grid to check who had motive, means and opportunity.",
-      "how.s3.title": "Make the accusation",
-      "how.s3.text": "Make your call. The solution reveals the complete chain of evidence.",
-      "how.attr.motive": "Motive",
-      "how.attr.means": "Means",
-      "how.attr.opportunity": "Opportunity",
-
-      "feat.kicker": "In the game",
-      "feat.title": "More than a puzzle",
-      "feat.story.title": "A case as a story",
-      "feat.story.text": "Every case unfolds chapter by chapter. You follow the narrative, get to know the suspects with portrait and statement, and uncover the clues step by step.",
-      "feat.notebook.title": "Your notebook",
-      "feat.notebook.text": "Investigate actively: tap any sentence in the case that strikes you as suspicious and collect it in your notebook. You build your own chain of evidence.",
-      "feat.streak.title": "Keep your streak",
-      "feat.streak.text": "Solve the case of the day and keep your streak alive. Sign in with Google or Apple if you like – your progress then follows you across devices.",
-      "feat.leaderboard.title": "Compete with others",
-      "feat.leaderboard.text": "On the leaderboards, what you solve counts: current streak, best streak, cases solved and played. Climb the ranks and defend your place.",
-      "feat.delikts.title": "Delikts for your investigation",
-      "feat.delikts.text": "Delikts are your investigation currency: spend them on hints, a second attempt or an extra interrogation. Earn them for free by watching a video – or grab a pack if you like.",
-
-      "shots.kicker": "A look inside",
-      "shots.title": "Investigative noir look",
-
-      "footer.tagline": "A new case. Every day.",
       "footer.contact": "Contact",
       "footer.privacy": "Privacy",
       "footer.delete": "Delete account",
-
+      "footer.tagline": "A new case. Every day.",
       "privacy.kicker": "Legal",
       "privacy.title": "Privacy Policy",
       "delete.kicker": "Account",
@@ -149,6 +219,7 @@
   };
 
   var SUPPORTED = ["de", "en"];
+  var DEFAULT_LANG = "en";
   var STORAGE_KEY = "delikta-lang";
 
   function pickInitial() {
@@ -157,20 +228,28 @@
     var stored = null;
     try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
     if (stored && SUPPORTED.indexOf(stored) !== -1) return stored;
-    var nav = (navigator.language || "de").slice(0, 2).toLowerCase();
-    return SUPPORTED.indexOf(nav) !== -1 ? nav : "de";
+    // Browsersprache bestimmt; sonst Default EN.
+    var nav = (navigator.language || DEFAULT_LANG).slice(0, 2).toLowerCase();
+    return SUPPORTED.indexOf(nav) !== -1 ? nav : DEFAULT_LANG;
   }
 
   function apply(lang) {
-    if (SUPPORTED.indexOf(lang) === -1) lang = "de";
+    if (SUPPORTED.indexOf(lang) === -1) lang = DEFAULT_LANG;
     var dict = STRINGS[lang];
 
-    // 1) Kurztexte
+    // 1) Kurztexte (textContent)
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
       var key = el.getAttribute("data-i18n");
       if (dict[key] != null) el.textContent = dict[key];
     });
-    // Attribut-Übersetzungen (z. B. aria-label / title / content)
+
+    // 2) Texte mit Inline-Markup (innerHTML)
+    document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n-html");
+      if (dict[key] != null) el.innerHTML = dict[key];
+    });
+
+    // 3) Attribut-Übersetzungen (alt / aria-label / title / src …)
     document.querySelectorAll("[data-i18n-attr]").forEach(function (el) {
       var spec = el.getAttribute("data-i18n-attr"); // "attr:key,attr:key"
       spec.split(",").forEach(function (pair) {
@@ -181,17 +260,17 @@
       });
     });
 
-    // 2) Sprachblöcke (lange Texte)
+    // 4) Sprachblöcke (lange Rechtstexte)
     document.querySelectorAll("[data-lang-block]").forEach(function (el) {
       el.classList.toggle("lang-active", el.getAttribute("data-lang-block") === lang);
     });
 
-    // 3) Umschalter-Status
+    // 5) Umschalter-Status
     document.querySelectorAll(".lang-switch button").forEach(function (btn) {
       btn.setAttribute("aria-pressed", String(btn.getAttribute("data-set-lang") === lang));
     });
 
-    // 4) <html lang> + persistieren
+    // 6) <html lang> + persistieren
     document.documentElement.setAttribute("lang", lang);
     try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
   }
