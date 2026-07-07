@@ -43,11 +43,16 @@
       position:fixed; top:0; left:0; right:0; z-index:90;
       display:flex; align-items:center; gap:12px;
       padding:14px 24px;
-      background:linear-gradient(180deg,rgba(16,20,26,.9),rgba(16,20,26,0));
-      opacity:0; transform:translateY(-8px); transition:opacity .4s,transform .4s;
+      background:linear-gradient(180deg,rgba(16,20,26,0),rgba(16,20,26,0));
+      transition:background .4s;
       pointer-events:none;
     }
-    .topbar.show{opacity:1; transform:none; pointer-events:auto}
+    .topbar.show{background:linear-gradient(180deg,rgba(16,20,26,.9),rgba(16,20,26,0))}
+    /* Icon + Wortmarke erscheinen erst beim Scrollen … */
+    .topbar img, .topbar .wordmark{opacity:0; transform:translateY(-8px); transition:opacity .4s,transform .4s}
+    .topbar.show img, .topbar.show .wordmark{opacity:1; transform:none}
+    /* … der Sprachumschalter ist von Anfang an sichtbar und klickbar */
+    .topbar .lang-switch{pointer-events:auto}
     .topbar img{width:30px;height:30px}
     .topbar .wordmark{font-weight:800;letter-spacing:2px;font-size:16px}
     .topbar .wordmark b{color:var(--amber)}
