@@ -100,6 +100,7 @@
       "footer.link.privacy": "Datenschutz",
       "footer.link.delete": "Account löschen",
       "footer.link.contact": "Kontakt",
+      "footer.studio": "Ein Spiel von",
 
       /* ---- Sprachumschalter (aria) ---- */
       "lang.switch.aria": "Sprache / Language",
@@ -207,6 +208,7 @@
       "footer.link.privacy": "Privacy",
       "footer.link.delete": "Delete account",
       "footer.link.contact": "Contact",
+      "footer.studio": "A game by",
 
       /* ---- Language switch (aria) ---- */
       "lang.switch.aria": "Sprache / Language",
