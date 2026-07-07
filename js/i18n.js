@@ -28,6 +28,7 @@
 
       /* ---- Kapitel: Kriminalgeschichte ---- */
       "chapter.krimi.img.alt": "Delikta — der Fall entfaltet sich Kapitel für Kapitel",
+      "chapter.krimi.img.src": "assets/screenshots/story_de.png",
       "chapter.krimi.num": "Die Kriminalgeschichte",
       "chapter.krimi.h2": "Der Fall entfaltet sich <span class=\"accent\">Kapitel für Kapitel.</span>",
       "chapter.krimi.p": "Kein trockenes Rätsel, sondern eine Geschichte. Du liest dich durch die Nacht des Verbrechens – und mit jedem Kapitel treten neue Verdächtige und Hinweise ans Licht. Lass dir den Fall sogar vorlesen.",
@@ -39,12 +40,14 @@
 
       /* ---- Kapitel: Verdächtige ---- */
       "chapter.suspects.img.alt": "Delikta — die Verdächtigen mit Porträt, Rolle und Aussage",
+      "chapter.suspects.img.src": "assets/screenshots/suspects_de.png",
       "chapter.suspects.num": "Die Verdächtigen",
       "chapter.suspects.h2": "Jeder hat ein <span class=\"accent\">Motiv – und eine Geschichte.</span>",
       "chapter.suspects.p": "Lerne die Verdächtigen kennen: Porträt, Rolle und ihre Beziehung zum Opfer. Ihre Aussagen und Alibis widersprechen sich – und genau in diesen Widersprüchen liegt die Wahrheit.",
 
       /* ---- Kapitel: Ermittlung ---- */
       "chapter.investigation.img.alt": "Delikta — Verdächtige und Ermittlungsraster",
+      "chapter.investigation.img.src": "assets/screenshots/investigation_de.png",
       "chapter.investigation.num": "Die Ermittlung",
       "chapter.investigation.h2": "Sammle deine <span class=\"accent\">Beweiskette selbst.</span>",
       "chapter.investigation.p": "Tippe im Text auf jeden Satz, der dir verdächtig vorkommt – er wandert in dein Hinweisbuch. Prüfe im Ermittlungsraster, wer Motiv, Mittel und Gelegenheit hatte, und erhebe Anklage.",
@@ -67,6 +70,7 @@
 
       /* ---- Feature: Delikts ---- */
       "feature.delikts.img.alt": "Delikta — Deliktübersicht mit Kontostand und Verlauf",
+      "feature.delikts.img.src": "assets/screenshots/delikts_de.png",
       "feature.delikts.kicker": "Deine Ermittlungswährung",
       "feature.delikts.h2": "Delikts, wenn's knifflig wird",
       "feature.delikts.p": "Setze Delikts für einen Tipp, einen zweiten Versuch oder eine zusätzliche Befragung ein. Verdiene sie kostenlos per Video – oder hol dir ein Paket, wenn du magst.",
@@ -131,6 +135,7 @@
 
       /* ---- Chapter: the crime story ---- */
       "chapter.krimi.img.alt": "Delikta — the case unfolds chapter by chapter",
+      "chapter.krimi.img.src": "assets/screenshots/story_en.png",
       "chapter.krimi.num": "The crime story",
       "chapter.krimi.h2": "The case unfolds <span class=\"accent\">chapter by chapter.</span>",
       "chapter.krimi.p": "Not a dry puzzle, but a story. You read your way through the night of the crime – and with every chapter new suspects and clues come to light. You can even have the case read aloud.",
@@ -142,12 +147,14 @@
 
       /* ---- Chapter: the suspects ---- */
       "chapter.suspects.img.alt": "Delikta — the suspects with portrait, role and statement",
+      "chapter.suspects.img.src": "assets/screenshots/suspects_en.png",
       "chapter.suspects.num": "The suspects",
       "chapter.suspects.h2": "Everyone has a <span class=\"accent\">motive – and a story.</span>",
       "chapter.suspects.p": "Get to know the suspects: portrait, role and their relationship to the victim. Their statements and alibis contradict each other – and the truth lies in exactly those contradictions.",
 
       /* ---- Chapter: the investigation ---- */
       "chapter.investigation.img.alt": "Delikta — suspects and investigation grid",
+      "chapter.investigation.img.src": "assets/screenshots/investigation_en.png",
       "chapter.investigation.num": "The investigation",
       "chapter.investigation.h2": "Build your <span class=\"accent\">chain of evidence yourself.</span>",
       "chapter.investigation.p": "Tap any sentence in the text that strikes you as suspicious – it goes straight into your notebook. Use the investigation grid to check who had motive, means and opportunity, then make your accusation.",
@@ -170,6 +177,7 @@
 
       /* ---- Feature: Delikts ---- */
       "feature.delikts.img.alt": "Delikta — Delikts overview with balance and history",
+      "feature.delikts.img.src": "assets/screenshots/delikts_en.png",
       "feature.delikts.kicker": "Your investigation currency",
       "feature.delikts.h2": "Delikts, when it gets tricky",
       "feature.delikts.p": "Spend Delikts on a hint, a second attempt or an extra interrogation. Earn them for free by watching a video – or grab a pack if you like.",

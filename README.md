@@ -75,7 +75,7 @@ Der Workflow `.github/workflows/deploy.yml` deployt bei jedem Push auf `main` au
 - [x] **Android-Download** aktiv (Google-Play-Link + QR-Code in `index.html`).
 - [ ] **iOS-Link:** sobald im App Store verfügbar, in `index.html` das App-Store-Badge (`.plat-soon`) verlinken und „In Kürze verfügbar" entfernen.
 - [x] **Echte Screenshots** in `assets/screenshots/` (aus `tagesakte-app/branding/screenshots/`).
-- [ ] **Englische Screenshots:** Die Startseite hat einen DE/EN-Umschalter; die App-Screenshots sind aktuell in beiden Sprachen deutsch. Bei EN-Sprache idealerweise englische App-Screenshots einsetzen (per Sprache umschaltbar via `data-i18n-attr="src:…"`).
+- [x] **Englische Screenshots:** je Ansicht `_de`/`_en`-Variante in `assets/screenshots/` (story, suspects, investigation, delikts); der Sprachumschalter tauscht sie via `data-i18n-attr="src:…"`.
 - [ ] **Datenschutz rechtlich prüfen** (`privacy.html`): Entwurf-Hinweis entfernen, Platzhalter `[…]` ausfüllen (Stand-Datum, Supabase-Region/Garantien, Consent-Mechanismus), ggf. Name/Anschrift des Verantwortlichen ergänzen.
 - [ ] **AdMob/Login-Status** abgleichen: Falls sich der tatsächliche Funktionsumfang (Werbung, Login-Anbieter) ändert, Datenschutztext anpassen.
 - [ ] Falls Custom-Domain gewünscht: `CNAME` anlegen (siehe oben).
