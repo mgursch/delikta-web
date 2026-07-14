@@ -226,6 +226,8 @@
     footer{border-top:1px solid var(--line);padding:40px 24px;text-align:center;color:var(--faint);font-size:14px}
     footer a{color:var(--muted);text-decoration:none;margin:0 10px}
     footer a:hover{color:var(--text)}
+    footer a.ig{display:inline-flex;align-items:center;gap:5px;vertical-align:middle}
+    footer a.ig svg{display:block}
     /* dezenter Studio-Credit */
     footer .studio{display:flex;flex-direction:column;align-items:center;gap:12px;margin:32px 0 4px;padding-top:26px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--faint);text-decoration:none;transition:opacity .18s}
     footer .studio:hover{opacity:1;text-decoration:none}
@@ -493,6 +495,14 @@
       <a href="privacy.html" data-i18n="footer.link.privacy">Datenschutz</a>
       <a href="delete-account.html" data-i18n="footer.link.delete">Account löschen</a>
       <a href="mailto:swordistudios@gmail.com" data-i18n="footer.link.contact">Kontakt</a>
+      <a class="ig" href="https://www.instagram.com/playdelikta" target="_blank" rel="noopener" aria-label="Delikta auf Instagram">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5.5"/>
+          <circle cx="12" cy="12" r="4.2"/>
+          <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/>
+        </svg>
+        Instagram
+      </a>
     </p>
     <a class="studio" href="https://swordistudios.com/" target="_blank" rel="noopener">
       <span class="studio-label" data-i18n="footer.studio">Ein Spiel von</span>
