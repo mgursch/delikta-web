@@ -8,7 +8,8 @@
       "namespace": "android_app",
       "package_name": "io.delikta.game",
       "sha256_cert_fingerprints": [
-        "2F:EF:FA:E2:52:77:38:E5:2B:00:E5:F9:B9:BD:6A:7E:92:F8:10:EC:E3:5D:88:86:B7:58:00:AE:8A:4D:F7:40"
+        "2F:EF:FA:E2:52:77:38:E5:2B:00:E5:F9:B9:BD:6A:7E:92:F8:10:EC:E3:5D:88:86:B7:58:00:AE:8A:4D:F7:40",
+        "48:61:61:C4:B3:53:A6:D7:3A:E3:99:26:A1:E7:8D:3F:69:B2:FA:01:12:CB:79:06:A9:0C:06:6A:74:8E:67:BD"
       ]
     }
   }
