@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "io.delikta.game",
+      "sha256_cert_fingerprints": [
+        "2F:EF:FA:E2:52:77:38:E5:2B:00:E5:F9:B9:BD:6A:7E:92:F8:10:EC:E3:5D:88:86:B7:58:00:AE:8A:4D:F7:40"
+      ]
+    }
+  }
+]
